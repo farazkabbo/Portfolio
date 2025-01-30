@@ -239,3 +239,33 @@ document.addEventListener('touchmove', e => {
 document.addEventListener('touchend', () => {
     touchStartY = null;
 }, { passive: true });
+
+// Add this to your JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Fix for all clickable elements
+    const clickableElements = document.querySelectorAll('a, button, .faq, .portfolio-layer');
+    
+    clickableElements.forEach(element => {
+        element.addEventListener('touchstart', function() {}, {passive: true});
+        
+        // Prevent ghost clicks
+        element.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            element.click();
+        }, {passive: false});
+    });
+    
+    // Fix for portfolio hover on mobile
+    const portfolioBoxes = document.querySelectorAll('.portfolio-box');
+    portfolioBoxes.forEach(box => {
+        box.addEventListener('touchstart', function() {
+            this.classList.add('touch-hover');
+        }, {passive: true});
+        
+        box.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.classList.remove('touch-hover');
+            }, 300);
+        }, {passive: true});
+    });
+});
