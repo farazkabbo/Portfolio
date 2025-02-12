@@ -29,7 +29,7 @@ document.addEventListener('click', (e) => {
 
 // Typed text animation
 const typed = new Typed('.multiple-text', {
-    strings: ['Web Developer', 'Frontend Developer', 'Youtuber', 'Web Designer'],
+    strings: ['Software Developer', 'Full Stack Developer', 'Data Analyst', 'Competitive Programmer'],
     typeSpeed: 120,
     backSpeed: 120,
     backDelay: 1300,
@@ -268,4 +268,76 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         }, {passive: true});
     });
+});
+
+// Add to your existing JavaScript
+
+// Scroll reveal animation
+function reveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', reveal);
+
+// Project cards animation
+const observerOptions = {
+    threshold: 0.2
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.portfolio-box').forEach(box => {
+    observer.observe(box);
+});
+
+// Smooth scroll for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Particle background (add this if you want a cool background effect)
+particlesJS('particles-js', {
+    particles: {
+        number: { value: 80 },
+        color: { value: '#4a90e2' },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#4a90e2',
+            opacity: 0.4,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 6
+        }
+    }
 });
