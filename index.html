@@ -3,139 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammed Faraz Kabbo | Portfolio</title>
+    <title>Portfolio | by Mohammed Faraz Kabbo</title>
 
-    <!-- Box Icons -->
+    <!-- boxicon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/channel logo.png" type="image/x-icon">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" ></script>
+
+    <!-- Jquery Validation CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+    <!-- style -->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
-
-    <!-- Header -->
+    <!-- Home Section -->
+    <!-- header -->
     <header class="header">
         <div class="mobile-menu-btn">
             <i class='bx bx-menu'></i>
         </div>
-        <a href="#" class="logo gradient-text">FarazKabbo</a>
+        <a href="#" class="logo">FarazKabbo</a>
 
         <nav class="navbar">
-            <a href="#home" class="active">Home</a>
+            <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#education">Education</a>
             <a href="#skills">Skills</a>
             <a href="#portfolio">Portfolio</a>
             <a href="#contact">Contact</a>
+
+
         </nav>
         <div class="bx bx-moon" id="darkMode-icon"></div>
+
     </header>
 
-    <!-- Home Section -->
-    <section class="home reveal" id="home">
+    <!-- Home section left design -->
+    <section class="home" id="home">
         <div class="home-content">
             <h3>Hello, I'm</h3>
-            <h1 class="gradient-text">Mohammed Faraz Kabbo</h1>
+            <h1 class="heading" style="color: #333;"><span>Mohammed Faraz </span> Kabbo</h1>
             <h3>And I'm a <span class="multiple-text"></span></h3>
-            <p class="reveal slide-up">Computer Science student at York University with competitive programming excellence (Meta Hacker Cup Top 1%), specialized in AI development and full-stack solutions.</p>
+            <p>Computer Science student at York University with competitive programming excellence (Meta Hacker Cup Top 1%), experience in AI development, and strong foundation in full-stack development. Specialized in data visualization and analysis with proven success in delivering scalable solutions.</p>
 
-            <div class="social-media reveal">
+            <div class="social-media">
+                <a href="https://www.youtube.com/channel/UCnhfV-TI5CosdvQPdabyP1A"><i class='bx bxl-youtube'></i></a>
+                <a href="https://www.instagram.com/mewdiegamer/"><i class='bx bxl-instagram'></i></a>
                 <a href="https://github.com/farazkabbo"><i class='bx bxl-github'></i></a>
-                <a href="https://www.linkedin.com/in/mohammed-faraz-kabbo"><i class='bx bxl-linkedin'></i></a>
-                <a href="mailto:kabbofaraz@gmail.com"><i class='bx bx-envelope'></i></a>
+                <a href="https://www.linkedin.com/in/mohammed-faraz-kabbo/"><i class='bx bxl-linkedin'></i></a>
             </div>
-            <a href="resume.pdf" class="btn reveal">Download Resume</a>
+            <a href="./images/Resume...........pdf" class="btn">Download Resume</a>
+        </div>
+
+        <!-- home section right design -->
+        <div class="profession-container">
+            <div class="profession-box">
+                <div class="profession" style = "--i:0">
+                    <i class="bx bx-code-alt"></i>
+                    <h3>Web Developer</h3>
+                </div>
+                <div class="profession" style = "--i:1">
+                    <i class="bx bx-palette"></i>
+                    <h3>Data Analyst</h3>
+                </div>
+                <div class="profession" style = "--i:2">
+                    <i class="bx bx-terminal"></i>
+                    <h3>Web developer</h3>
+                </div>
+                <div class="profession" style = "--i:3">
+                    <i class="bx bx-camera"></i>
+                    <h3>Animator</h3>
+                </div>
+
+                <div class="circle"></div>
+            </div>
+            <div class="overlay"></div>
+            <div class="home-img">
+                <img src="./images/image.png" alt="">
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about reveal slide-up" id="about">
-        <h2 class="heading">About <span>Me</span></h2>
+
+    <!-- about section -->
+    <section class="about" id="about">
+        <h2 class="heading" style="color: #fff;">About <span>Me</span></h2>
         <div class="about-img">
-            <img src="images/profile.jpg" alt="Profile">
+            <img src="images\faraz.jpg" alt="">
             <span class="circle-spin"></span>
         </div>
 
-        <div class="about-content reveal">
-            <h3>Software Developer</h3>
-            <p>Computer Science student at York University with competitive programming excellence (Meta Hacker Cup Top 1%). Experienced in full-stack development, AI solutions, and data analytics. Proven track record of building scalable applications and implementing efficient data processing systems. Strong foundation in cloud technologies and modern development practices.</p>
+        <div class="about-content">
+            <h3>Programmer</h3>
+            <p>I am proficient in programming languages such as Python, Java, and SQL, and have extensive experience with data visualization tools like Tableau and Excel. My ability to analyze large datasets, develop predictive models, and optimize processes has been demonstrated through various projects and internships. In addition, my strong communication and teamwork skills enable me to collaborate effectively with cross-functional teams and stakeholders.</p>
+            <div>
+                <a href="#" class="btn">Read More</a>
+            </div>
         </div>
     </section>
 
+
     <!-- Education Section -->
-    <section class="education reveal" id="education">
-        <h2 class="heading">My <span>Journey</span></h2>
+    <section class="education" id="education">
+        <h2 class="heading" id="head">My <span>Journey</span></h2>
         <div class="education-row">
             <div class="education-column">
                 <h3 class="title">Education</h3>
+
                 <div class="education-box">
-                    <div class="education-content reveal slide-up">
+                    <div class="education-content">
                         <div class="content">
                             <div class="year"><i class="bx bxs-calendar"></i>2023-2027</div>
-                            <h3>Computer Science (Hons.) - York University</h3>
-                            <p>Lassonde School of Engineering, Focus on AI and Data Science</p>
+                            <h3>Bachelor's Degree</h3>
+                            <p> Currently pursuing a degree in Computer Science(Hons.) at York University and in my 3rd year
+                            </p>
                         </div>
                     </div>
-                    <div class="education-content reveal slide-up">
+
+                    <div class="education-content">
                         <div class="content">
-                            <div class="year"><i class="bx bxs-calendar"></i>2024</div>
-                            <h3>Google Data Analytics Certificate</h3>
-                            <p>Professional certification in data analytics and visualization</p>
+                            <div class="year"><i class="bx bxs-calendar"></i>2024 - Present</div>
+                            <h3>Co-Founder & Developer - FashionX</h3>
+                            <p>Developed AI recommendation engine and led technical implementation of data processing systems.</p>
                         </div>
                     </div>
+
+                   
+                    
                 </div>
             </div>
 
             <div class="education-column">
                 <h3 class="title">Experience</h3>
+
                 <div class="education-box">
-                    <div class="education-content reveal slide-up">
+                    <div class="education-content">
                         <div class="content">
-                            <div class="year"><i class="bx bxs-calendar"></i>2024 - Present</div>
-                            <h3>Co-Founder & Developer - FashionX</h3>
-                            <p>Developed AI recommendation engine achieving 76% accuracy and led technical implementation</p>
+                            <div class="year"><i class="bx bxs-calendar"></i>2024 Jan - Current</div>
+                            <h3>Tutor</h3>
+                            <p> Currently tutoring High School students in Mathematics, Science and basic Programming at Megamind Learning Centre, Vaughan , ON
+                            </p>
                         </div>
                     </div>
-                    <div class="education-content reveal slide-up">
+
+                    <div class="education-content">
                         <div class="content">
-                            <div class="year"><i class="bx bxs-calendar"></i>2024 - Present</div>
-                            <h3>Coding Instructor - MegaMind Learning Centre</h3>
-                            <p>Teaching Java and Python, achieving 74% student success rate</p>
+                            <div class="year"><i class="bx bxs-calendar"></i>2023 May- Curent</div>
+                            <h3>Stock Clerk</h3>
+                            <p>Communicated with a lot of customers and assisted them in the store with what they need.
+                                ● Collaborated with team to assemble the order and work it according to their shelves.
+                                ● Maintained team during some days in organizing items throughout the store
+                            </p>
                         </div>
                     </div>
+
+                    <div class="education-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i>2021- Present</div>
+                            <h3>Animator </h3>
+                            <p> Self employed Professional animator at my own studio (Mew animation studio)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="education-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i>2020- 2022</div>
+                            <h3>Web Designer</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo repellat consequuntur doloribus odio sequi hic ex architecto doloremque minima amet deleniti ab ratione, ut sed nostrum fugiat adipisci veritatis sunt temporibus. Molestiae cum placeat maxime,
+                            </p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- Skills Section -->
-    <section class="skills reveal" id="skills">
-        <h2 class="heading">My <span>Skills</span></h2>
+    <section class="skills" id="skills">
+        <h2 class="heading">My<span>Skills</span></h2>
         <div class="skills-row">
             <div class="skills-column">
-                <h3 class="title">Technical Skills</h3>
+                <h3 class="title">Coding Skills</h3>
+
                 <div class="skills-box">
                     <div class="skills-content">
                         <div class="progress">
-                            <h3>Full Stack Development<span>90%</span></h3>
+                            <h3>HTML & CSS<span>90%</span></h3>
                             <div class="bar"><span></span></div>
                         </div>
                         <div class="progress">
-                            <h3>AWS & Cloud Services<span>85%</span></h3>
+                            <h3>JAVA <span>88%</span></h3>
                             <div class="bar"><span></span></div>
                         </div>
                         <div class="progress">
-                            <h3>AI/ML Development<span>80%</span></h3>
+                            <h3>JavaScript <span>80%</span></h3>
                             <div class="bar"><span></span></div>
                         </div>
                         <div class="progress">
-                            <h3>Data Analytics<span>85%</span></h3>
+                            <h3>PHP <span>60%</span></h3>
                             <div class="bar"><span></span></div>
+                        </div>
+                        <div class="progress">
+                            <h3>C++ <span>75%</span></h3>
+                            <div class="bar"><span></span></div>
+                            <div class="progress">
+                                <h3>SQL(Data analysis) <span>85%</span></h3>
+                                <div class="bar"><span></span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,18 +227,23 @@
 
             <div class="skills-column">
                 <h3 class="title">Professional Skills</h3>
+
                 <div class="skills-box">
                     <div class="skills-content">
                         <div class="progress">
-                            <h3>Problem Solving<span>95%</span></h3>
+                            <h3>Data Analysis <span>90%</span></h3>
                             <div class="bar"><span></span></div>
                         </div>
                         <div class="progress">
-                            <h3>Team Leadership<span>85%</span></h3>
+                            <h3>Software Develpment and Web Developing <span>80%</span></h3>
                             <div class="bar"><span></span></div>
                         </div>
                         <div class="progress">
-                            <h3>Project Management<span>80%</span></h3>
+                            <h3>Stock Clerk <span>70%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                        <div class="progress">
+                            <h3>Graphic Designer and Animator <span>85%</span></h3>
                             <div class="bar"><span></span></div>
                         </div>
                     </div>
@@ -163,83 +252,209 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio reveal" id="portfolio">
-        <h2 class="heading">Latest <span>Projects</span></h2>
+
+    <!-- Projects section -->
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading"> <span>projects</span></h2>
+
         <div class="portfolio-container">
-            <div class="portfolio-box reveal slide-up">
+            <div class="portfolio-box">
                 <img src="./images/minutemaster.jpg" alt="MinuteMaster">
                 <div class="portfolio-layer">
                     <h4>MinuteMaster — Geesehacks 2025</h4>
-                    <p>Built scalable audio processing system using AWS services achieving 78% accuracy and 100ms latency.</p>
-                    <a href="#"><i class="bx bx-link-external"></i></a>
+                    <p>Built scalable audio processing system using AWS services achieving 78% accuracy and 100ms latency. Implemented efficient cloud storage with AWS S3.</p>
+                    <a href="https://github.com/your-link"><i class="bx bx-link-external"></i></a>
                 </div>
             </div>
-
-            <div class="portfolio-box reveal slide-up">
+        
+            <div class="portfolio-box">
                 <img src="./images/studybuddy.jpg" alt="StudyBuddy">
                 <div class="portfolio-layer">
                     <h4>StudyBuddy Platform</h4>
-                    <p>Full-stack application with 95% test coverage, implementing lecture summarization using Google Gemini LLM.</p>
-                    <a href="#"><i class="bx bx-link-external"></i></a>
+                    <p>Full-stack application with 95% test coverage, implementing lecture summarization using Google Gemini LLM achieving 88% accuracy.</p>
+                    <a href="https://github.com/your-link"><i class="bx bx-link-external"></i></a>
                 </div>
             </div>
-
-            <div class="portfolio-box reveal slide-up">
+        
+            <div class="portfolio-box">
                 <img src="./images/fashionx.jpg" alt="FashionX">
                 <div class="portfolio-layer">
-                    <h4>FashionX AI</h4>
-                    <p>AI recommendation engine using TensorFlow and OpenAI CLIP, achieving 76% match accuracy.</p>
-                    <a href="#"><i class="bx bx-link-external"></i></a>
+                    <h4>FashionX AI Recommendation Engine</h4>
+                    <p>Developed AI recommendation engine using TensorFlow and OpenAI CLIP, achieving 76% match accuracy. Created complex data reports using SQL.</p>
+                    <a href="https://github.com/your-link"><i class="bx bx-link-external"></i></a>
                 </div>
             </div>
         </div>
+
+           
+        </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact reveal" id="contact">
+
+    <!-- Team section -->
+    <section class="team">
+        <h2 class="heading">Certificates <span>& Licenses</span></h2>
+        <div class="container team_container">
+            <article class="team_member">
+                <div class="team_member-image">
+                    <img src="./images/card-3.png" alt="">
+                </div>
+                <div class="team_member-info">
+                    <h4>Data Analysis Course</h4>
+                    <p>Google</p>
+                </div>
+                <div class="team_member-socials">
+                    <a href="#"><i class='bx bxl-instagram' ></i></a>
+                    <a href="#"><i class='bx bxl-twitter' ></i></a>
+                    <a href="#"><i class='bx bxl-facebook' ></i></a>
+                </div>
+            </article>
+
+            <article class="team_member">
+                <div class="team_member-image">
+                    <img src="./images/SQL for Data Science.PNG" alt="">
+                </div>
+                <div class="team_member-info">
+                    <h4>Basic SQL </h4>
+                    <p>IBM</p>
+                </div>
+                <div class="team_member-socials">
+                    <a href="#"><i class='bx bxl-instagram' ></i></a>
+                    <a href="#"><i class='bx bxl-twitter' ></i></a>
+                    <a href="#"><i class='bx bxl-facebook' ></i></a>
+                </div>
+            </article>
+
+            <article class="team_member">
+                <div class="team_member-image">
+                    <img src="./images/git.jpg" alt="">
+                </div>
+                <div class="team_member-info">
+                    <h4>Introduction to git and github </h4>
+                    <p>IBM</p>
+                </div>
+                <div class="team_member-socials">
+                    <a href="#"><i class='bx bxl-instagram' ></i></a>
+                    <a href="#"><i class='bx bxl-twitter' ></i></a>
+                    <a href="#"><i class='bx bxl-facebook' ></i></a>
+                </div>
+            </article>
+    </div>
+    </section>
+
+
+    <!-- FAQs Section -->
+    <section class="faqs">
+        <h2 class="heading">Frequently Asked <span>Questions</span></h2>
+        <div class="container faqs_container">
+
+            <article class="faq">
+                <div class="faq_icon"><i class="bx bx-plus"></i></div>
+                <div class="question_anser">
+                    <h4>What is your experience with data analysis?</h4>
+                    <p>I have experience analyzing large datasets using Python libraries such as pandas and NumPy. I have also used data visualization tools like Tableau and Excel to present data insights effectively.</p>
+                </div>
+            </article>
+            <article class="faq">
+                <div class="faq_icon"><i class="bx bx-plus"></i></div>
+                <div class="question_anser">
+                    <h4>How do you approach problem-solving?</h4>
+                    <p>I approach problem-solving by breaking down the problem into smaller, manageable parts. I use logical reasoning and algorithmic thinking to devise solutions. I also leverage online resources, documentation, and collaborative discussions to find the best solutions.</p>
+                </div>
+            </article>
+            <article class="faq">
+                <div class="faq_icon"><i class="bx bx-plus"></i></div>
+                <div class="question_anser">
+                    <h4>What motivates you to pursue a career in computer science?</h4>
+                    <p>I am motivated by the ever-evolving nature of technology and the endless possibilities it offers. I enjoy solving complex problems and creating solutions that can make a positive impact. My passion for continuous learning and innovation drives me to pursue a career in computer science.</p>
+                </div>
+            </article>
+            <article class="faq">
+                <div class="faq_icon"><i class="bx bx-plus"></i></div>
+                <div class="question_anser">
+                    <h4>What tools and technologies do you use for web development?</h4>
+                    <p>For web development, I use HTML, CSS, JavaScript, and frameworks like React.js for the frontend. For the backend, I use Node.js, Express.js, and databases like MongoDB and MySQL.</p>
+                </div>
+            </article>
+            <article class="faq">
+                <div class="faq_icon"><i class="bx bx-plus"></i></div>
+                <div class="question_anser">
+                    <h4>How do you stay updated with the latest technology trends?</h4>
+                    <p>I stay updated by following technology blogs, participating in online courses, attending webinars, and being an active member of various tech communities. I also experiment with new technologies in my personal projects</p>
+                </div>
+            </article>
+            <article class="faq">
+                <div class="faq_icon"><i class="bx bx-plus"></i></div>
+                <div class="question_anser">
+                    <h4>What tools do you use for debugging?</h4>
+                    <p>Node.js Debugger: Node.js has a built-in debugger that can be used through the command line or integrated into IDEs like Visual Studio Code.
+                        JSHint/ESLint: Linting tools that help detect potential errors and enforce coding standards.
+                        Python
+                        PDB (Python Debugger): A built-in interactive debugger for Python.
+                        PyCharm: An IDE with integrated debugging tools for Python.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+    <!-- contact section -->
+    <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me</span></h2>
-        <form action="#" class="reveal slide-up">
+        <form action="" id="frm">
+
             <div class="input-box">
                 <div class="input-field">
-                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" placeholder="First Name" name="fname" required>
                     <span class="focus"></span>
                 </div>
                 <div class="input-field">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" placeholder="Last Name" name="lname" required>
                     <span class="focus"></span>
                 </div>
             </div>
+
+            <div class="input-box">
+                <div class="input-field">
+                    <input type="email" placeholder="Email Address" name="email" required>
+                    <span class="focus"></span>
+                </div>
+                <div class="input-field">
+                    <input type="number" placeholder="Phone Number" name="number" required>
+                    <span class="focus"></span>
+                </div>
+            </div>
+
             <div class="textarea-field">
-                <textarea name="" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                <textarea required name="msg" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
                 <span class="focus"></span>
             </div>
-            <div class="btn-box btns">
-                <button type="submit" class="btn">Submit</button>
+
+            <div class="message-btn">
+                <button class="btn">Send Message</button>
             </div>
         </form>
     </section>
 
-    <!-- Footer -->
+    <!-- footer section -->
+
     <footer class="footer">
         <div class="footer-text">
-            <p>Copyright &copy; 2024 by Mohammed Faraz Kabbo | All Rights Reserved</p>
+            <p>Copyright &copy; 2024 by Mew studio | All Rights Reserved.</p>
         </div>
         <div class="footer-iconTop">
             <a href="#"><i class="bx bx-up-arrow-alt"></i></a>
         </div>
     </footer>
 
-    <!-- Scroll Reveal -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    <!-- Typed JS -->
+    <!-- type text animation  -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
-    <!-- Particles JS -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+    <!-- ScrollReavel -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- script -->
+    <script src="./js/script.js"></script>
 </body>
 </html>
