@@ -20,6 +20,14 @@
     --border-color: rgba(255, 255, 255, 0.1);
  
 }
+
+.svg-filters {
+    position: absolute;
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+}
+
 html{
     font-size: 62.5%;
     overflow-x: hidden;
@@ -78,6 +86,7 @@ span{
     cursor: pointer;
     font-weight: 600;
     margin-right: auto;
+    animation: colorCycle 8s infinite;
 }
 .navbar a {
     font-size: 1.7rem;
@@ -138,12 +147,30 @@ span{
     font-size: 2rem;
     color: var(--main-color);
     transition: 0.5s ease;
+    position: relative;
+    transition: transform 0.3s ease;
 
 }
 .social-media a:hover{
     background: var(--main-color);
     color: var(--white-color);
     transition: 0.5s ease;
+    transform: scale(1.2);
+}
+
+.social-media a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--main-color) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.social-media a:hover::after {
+    transform: scale(2);
 }
 .btn {
     padding: 1.2rem 2.8rem;
@@ -157,13 +184,84 @@ span{
     box-shadow: 0 0.2rem 0.6rem var(--shadow-color);
     border: 2px solid var(--main-color);
     cursor: pointer;
-    transition: 0.4s ease;
-}
-.btn:hover{
-    background: transparent;
-    color: var(--main-color);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
 }
 
+/* Main hover effect */
+.btn:hover {
+    background: transparent;
+    color: var(--main-color);
+    transform: translateY(-3px);
+    box-shadow: 0 0.4rem 1.2rem var(--shadow-color);
+}
+
+/* Shine effect */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: 0.5s;
+    opacity: 0;
+    z-index: -1;
+}
+
+.btn:hover::after {
+    opacity: 1;
+    left: 100%;
+}
+
+/* Background slide effect */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--main-color);
+    z-index: -2;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover::before {
+    transform: translateX(-100%);
+}
+
+/* Active state animation */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.2rem 0.8rem var(--shadow-color);
+}
+
+/* Optional: Add pulsing effect */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--main-color), 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--main-color), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--main-color), 0);
+    }
+}
+
+.btn:focus {
+    animation: pulse 1.5s infinite;
+}
 .home .profession-container{
     position: absolute;
     width: 768px;
@@ -381,6 +479,8 @@ span{
     margin-bottom: 3rem;
     border-radius: 0.7rem;
     overflow: hidden;
+    animation: slideIn 0.6s ease-out forwards;
+    opacity: 0;
 }
 .education-content .content::before{
     width: 0;
@@ -405,16 +505,29 @@ span{
 }
 .education-content .content i {
     padding-right: 0.6rem;
+    animation-delay: 0.2s;
+    
 }
 .education-content .content h3 {
     font-size: 2.2rem;
+    animation-delay: 0.4s;
 }
 .education-content .content p {
     font-size: 1.7rem;
     padding-top: 0.7rem;
+    animation-delay: 0.6s;
 }
 
-
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 /* ============== Skills section=============== */
 /* Add after the education section */
 /* Skills Section */
@@ -480,55 +593,134 @@ span{
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 1.1rem;
+    animation: float 6s ease-in-out infinite;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .skill-box:hover {
     background: var(--card-bg);
     transform: translateY(-3px);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .skill-box i {
     font-size: 1.5rem;
     color: var(--main-color);
 }
+.skill-box::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-box:hover::before {
+    opacity: 1;
+}
 
 
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
 
+.skills-category {
+    position: relative;
+    z-index: 1;
+}
+
+.skills-category::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--main-color), 
+        var(--secondary-main-color), 
+        var(--main-color));
+    border-radius: 20px;
+    z-index: -1;
+    animation: borderGlow 3s linear infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 /* ============= Portfolio Section============= */
 .portfolio {
     margin-top: -6rem;
+    perspective: 1000px; /* For 3D effects */
 }
+
 .portfolio h2 {
     margin-bottom: 8rem;
+    position: relative;
+    animation: slideInDown 1s ease-out;
 }
+
 .portfolio .portfolio-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
     align-items: center;
 }
+
 .portfolio-container .portfolio-box {
     border-radius: 2rem;
     position: relative;
     display: flex;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    transform-style: preserve-3d;
+    animation: portfolioFade 0.8s ease forwards;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.portfolio-box:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
 .portfolio-box img {
     width: 100%;
-    transition: 0.5s;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
 }
+
 .portfolio-box:hover img {
-    transform:  scale(1.1);
+    transform: scale(1.1) translateZ(20px);
+    filter: brightness(0.8) blur(2px);
 }
+
 .portfolio-box .portfolio-layer {
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
-    top: 2.7rem;
-    background: linear-gradient(rgba(0,0,0,0.1), var(--main-color));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(var(--main-color), 0.9)
+    );
     color: var(--white-color);
     display: flex;
     align-items: center;
@@ -536,19 +728,37 @@ span{
     padding: 0 4rem;
     text-align: center;
     opacity: 0;
-    transition: 0.5s ease;
+    transform: translateY(100%);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
+}
 
-}
-.portfolio-box:hover .portfolio-layer{
+.portfolio-box:hover .portfolio-layer {
     opacity: 1;
+    transform: translateY(0);
 }
-.portfolio-layer h4{
+
+.portfolio-layer h4 {
     font-size: 3rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
 }
+
 .portfolio-layer p {
     font-size: 1.7rem;
     margin: 0.3rem 0 1rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
 }
+
+.portfolio-box:hover .portfolio-layer h4,
+.portfolio-box:hover .portfolio-layer p {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 .portfolio-layer a {
     display: inline-flex;
     width: 5rem;
@@ -557,20 +767,66 @@ span{
     align-items: center;
     border-radius: 50%;
     background-color: var(--white-color);
-    transition: 0.6s ease;
-
+    transform: translateY(20px) scale(0.5);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+    position: relative;
+    overflow: hidden;
 }
+
+.portfolio-box:hover .portfolio-layer a {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.portfolio-layer a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--main-color) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.4s ease;
+    z-index: 0;
+}
+
+.portfolio-layer a:hover::before {
+    transform: scale(2);
+}
+
 .portfolio-layer a i {
     font-size: 2rem;
     color: #333;
-    transition: 0.4s ease-in;
-
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .portfolio-layer a:hover i {
     color: var(--main-color);
+    transform: rotate(360deg);
 }
 
+@keyframes portfolioFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
 
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /* ============== Team SECTION============ */
 .team h2 {
     margin-bottom: 6rem;
@@ -651,6 +907,20 @@ span{
     height: fit-content;
     background: var(--main-color);
     cursor: pointer;
+    transform-origin: left;
+    animation: fadeInRight 0.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 .faq h4 {
     font-size: 1.8rem;
@@ -671,6 +941,16 @@ span{
 /* open faqs box */
 .faq.open p {
     display: block;
+    animation: expandFaq 0.3s ease-out forwards;
+}
+
+@keyframes expandFaq {
+    from {
+        background-position: 0% 50%;
+    }
+    to {
+        background-position: 100% 50%;
+    }
 }
 
 
@@ -1141,6 +1421,7 @@ img {
     top: 0;
     left: 0;
     z-index: -1;
+    filter: url(#goo);
 }
 
 
@@ -1254,4 +1535,47 @@ img {
 /* Optional: Add a subtle background for better readability in light mode */
 .light-mode .programmer-description {
     background: rgba(0, 0, 0, 0.05);
+}
+
+/* Add to your CSS */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--main-color);
+    z-index: 1000;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+.section-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section-title {
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.section-title span {
+    display: block;
+    animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes reveal {
+    0% {
+        transform: translate(0, 100%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }

@@ -341,3 +341,30 @@ particlesJS('particles-js', {
         }
     }
 });
+
+const updateScrollProgress = () => {
+    const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = window.scrollY;
+    const progress = (scrolled / totalScroll) * 100;
+    document.querySelector('.scroll-progress').style.width = `${progress}%`;
+};
+
+window.addEventListener('scroll', updateScrollProgress);
+window.addEventListener('resize', updateScrollProgress);
+
+// Add to your script.js - Change the variable name to avoid conflicts
+const fadeObserverOptions = {
+    threshold: 0.2
+};
+
+const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, fadeObserverOptions);
+
+document.querySelectorAll('.section-fade').forEach(section => {
+    fadeObserver.observe(section);
+});

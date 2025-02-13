@@ -23,6 +23,17 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+
+    <svg class="svg-filters">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" 
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+            </filter>
+        </defs>
+    </svg>
+    <div class="scroll-progress"></div>
     <!-- Home Section -->
     <!-- header -->
     <header class="header">
@@ -59,7 +70,7 @@
                 <a href="https://github.com/farazkabbo"><i class='bx bxl-github'></i></a>
                 <a href="https://www.linkedin.com/in/mohammed-faraz-kabbo/"><i class='bx bxl-linkedin'></i></a>
             </div>
-            <a href="./images/Resume...........pdf" class="btn">Download Resume</a>
+            <a href="./images/Mohammed Faraz Kabbo_soft dev_resume.pdf" class="btn">Download Resume</a>
         </div>
 
         <!-- home section right design -->
@@ -177,7 +188,7 @@
     </section>
 
 
-    <!-- Skills Section -->
+  
     <!-- Skills Section -->
 <section class="skills" id="skills">
     <h2 class="heading" style="color: #c52548;">Skills & <span>Technologies</span></h2>
@@ -313,29 +324,29 @@
             </div>
         
             <div class="portfolio-box">
-                <img src="./images/fashionx.jpg" alt="FashionX">
+                <img src="./images/Healthee.jpg" alt="FashionX">
                 <div class="portfolio-layer">
-                    <h4>FashionX AI Recommendation Engine</h4>
-                    <p>Developed AI recommendation engine using TensorFlow and OpenAI CLIP, achieving 76% match accuracy. Created complex data reports using SQL.</p>
+                    <h4>Healthee- CTRL+HACK+DEL 2024</h4>
+                    <p>Healthee is an innovative platform designed to transform how diabetics manage their health by providing real-time glucose monitoring and personalized support</p>
                     <a href="https://github.com/your-link"><i class="bx bx-link-external"></i></a>
                 </div>
             </div>
         </div>
         <div class="portfolio-box">
-            <img src="./images/fashionx.jpg" alt="FashionX">
+            <img src="./images/case-study.jpg" alt="FashionX">
             <div class="portfolio-layer">
-                <h4>FashionX AI Recommendation Engine</h4>
-                <p>Developed AI recommendation engine using TensorFlow and OpenAI CLIP, achieving 76% match accuracy. Created complex data reports using SQL.</p>
+                <h4>Cyclist Bike-Share Analysis Case Study</h4>
+                <p>Did a research on a Case Study where I engineered an ETL pipeline processing 2.5M+ rows of cycling data, reducing query time by 75% using BigQuery </p>
                 <a href="https://github.com/your-link"><i class="bx bx-link-external"></i></a>
             </div>
         </div>
     </div>
 
     <div class="portfolio-box">
-        <img src="./images/fashionx.jpg" alt="FashionX">
+        <img src="./images/Screenboard.jpg" alt="FashionX">
         <div class="portfolio-layer">
-            <h4>FashionX AI Recommendation Engine</h4>
-            <p>Developed AI recommendation engine using TensorFlow and OpenAI CLIP, achieving 76% match accuracy. Created complex data reports using SQL.</p>
+            <h4>Screenboard</h4>
+            <p>Engineered an ETL pipeline processing 2.5M+ rows of cycling data, reducing query time by 75% using BigQuery</p>
             <a href="https://github.com/your-link"><i class="bx bx-link-external"></i></a>
         </div>
     </div>
@@ -387,7 +398,8 @@
 
     <!-- FAQs Section -->
     <section class="faqs">
-        <h2 class="heading">Frequently Asked <span>Questions</span></h2>
+        <h2 class="heading" 
+        style="color: #c52548;">Frequently Asked <span>Questions</span></h2>
         <div class="container faqs_container">
 
             <article class="faq">
