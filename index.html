@@ -12,17 +12,32 @@
     <link rel="shortcut icon" href="./images/channel logo.png" type="image/x-icon">
 
     <!-- Jquery CDN -->
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"></script>
 
     <!-- Jquery Validation CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
 
     <!-- style -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+
+    <!-- Background Elements -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <!-- Animated Background Grid -->
+    <div class="grid-bg">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
 
     <svg class="svg-filters">
         <defs>
@@ -31,484 +46,973 @@
                 <feColorMatrix in="blur" mode="matrix" 
                     values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
             </filter>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                <feMerge> 
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
         </defs>
     </svg>
+    
     <div class="scroll-progress"></div>
-    <!-- Home Section -->
+    <div class="cursor-glow"></div>
+    
     <!-- header -->
     <header class="header">
-        <div class="mobile-menu-btn">
-            <i class='bx bx-menu'></i>
+        <div class="container nav">
+            <div class="mobile-menu-btn">
+                <i class='bx bx-menu'></i>
+                <i class='bx bx-x'></i>
+            </div>
+            <a href="#" class="logo">
+                <span class="logo-text">FarazKabbo</span>
+                <div class="logo-particles"></div>
+            </a>
+
+            <nav class="navbar">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="bx bx-moon theme-toggle" id="darkMode-icon"></div>
         </div>
-        <a href="#" class="logo">FarazKabbo</a>
-
-        <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
-
-
-        </nav>
-        <div class="bx bx-moon" id="darkMode-icon"></div>
-
     </header>
 
-    <!-- Home section left design -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h3>Hello, I'm</h3>
-            <h1 class="heading" style="color: #333;"><span>Mohammed Faraz </span> Kabbo</h1>
-            <h3>And I'm a <span class="multiple-text"></span></h3>
-            <p>Computer Science student at York University with competitive programming excellence (Meta Hacker Cup Top 1%), experience in AI development, and strong foundation in full-stack development. Specialized in data visualization and analysis with proven success in delivering scalable solutions.</p>
-
-            <div class="social-media">
-                <a href="https://www.youtube.com/channel/UCnhfV-TI5CosdvQPdabyP1A"><i class='bx bxl-youtube'></i></a>
-                <a href="https://www.instagram.com/mewdiegamer/"><i class='bx bxl-instagram'></i></a>
-                <a href="https://github.com/farazkabbo"><i class='bx bxl-github'></i></a>
-                <a href="https://www.linkedin.com/in/mohammed-faraz-kabbo/"><i class='bx bxl-linkedin'></i></a>
-            </div>
-            <a href="./images/Mohammed Faraz Kabbo_soft dev_resume.pdf" class="btn">Download Resume</a>
+    <!-- Home section -->
+    <section class="hero section" id="home">
+        <div class="hero-bg-animation">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
         </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="text-reveal">
+                        <h2 class="greeting">Hello, I'm</h2>
+                        <h1 class="main-title">
+                            <span class="highlight glitch" data-text="Mohammed Faraz">Mohammed Faraz</span> 
+                            <span class="last-name">Kabbo</span>
+                        </h1>
+                        <h2 class="subtitle">And I'm a <span class="multiple-text typing-animation"></span></h2>
+                    </div>
+                    
+                    <div class="description-container">
+                        <p class="hero-description animated-text">Computer Science student at York University with competitive programming excellence (Meta Hacker Cup Top 1%), experience in AI development, and strong foundation in full-stack development. Specialized in data visualization and analysis with proven success in delivering scalable solutions.</p>
+                    </div>
 
-        <!-- home section right design -->
-        <div class="profession-container">
-            <div class="profession-box">
-                <div class="profession" style = "--i:0">
-                    <i class="bx bx-code-alt"></i>
-                    <h3>Web Developer</h3>
-                </div>
-                <div class="profession" style = "--i:1">
-                    <i class="bx bx-palette"></i>
-                    <h3>Data Analyst</h3>
-                </div>
-                <div class="profession" style = "--i:2">
-                    <i class="bx bx-terminal"></i>
-                    <h3>Web developer</h3>
-                </div>
-                <div class="profession" style = "--i:3">
-                    <i class="bx bx-camera"></i>
-                    <h3>Animator</h3>
+                    <div class="hero-actions">
+                        <a href="./images/Mohammed Faraz Kabbo_soft dev_resume.pdf" class="btn btn-primary btn-glow">
+                            <span>Download Resume</span>
+                            <div class="btn-particles"></div>
+                        </a>
+                        <a href="#contact" class="btn btn-outline btn-magnetic">
+                            <span>Contact Me</span>
+                            <div class="btn-ripple"></div>
+                        </a>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/channel/UCnhfV-TI5CosdvQPdabyP1A" class="social-link social-youtube">
+                            <i class='bx bxl-youtube'></i>
+                            <div class="social-tooltip">YouTube</div>
+                        </a>
+                        <a href="https://www.instagram.com/mewdiegamer/" class="social-link social-instagram">
+                            <i class='bx bxl-instagram'></i>
+                            <div class="social-tooltip">Instagram</div>
+                        </a>
+                        <a href="https://github.com/farazkabbo" class="social-link social-github">
+                            <i class='bx bxl-github'></i>
+                            <div class="social-tooltip">GitHub</div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mohammed-faraz-kabbo/" class="social-link social-linkedin">
+                            <i class='bx bxl-linkedin'></i>
+                            <div class="social-tooltip">LinkedIn</div>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="circle"></div>
-            </div>
-            <div class="overlay"></div>
-            <div class="home-img">
-                <img src="./images/image.png" alt="">
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                        <div class="image-glow-effect"></div>
+                        <div class="hero-image">
+                            <img src="./images/image.png" alt="Mohammed Faraz Kabbo">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="holographic-border"></div>
+                    </div>
+                    
+                    <div class="floating-elements">
+                        <div class="floating-element code-element">
+                            <i class="bx bx-code-alt"></i>
+                            <div class="element-trail"></div>
+                        </div>
+                        <div class="floating-element design-element">
+                            <i class="bx bx-palette"></i>
+                            <div class="element-trail"></div>
+                        </div>
+                        <div class="floating-element terminal-element">
+                            <i class="bx bx-terminal"></i>
+                            <div class="element-trail"></div>
+                        </div>
+                        <div class="floating-element camera-element">
+                            <i class="bx bx-camera"></i>
+                            <div class="element-trail"></div>
+                        </div>
+                    </div>
+
+                    <div class="tech-orbit">
+                        <div class="orbit-ring ring-1">
+                            <div class="orbit-dot dot-1"></div>
+                            <div class="orbit-dot dot-2"></div>
+                            <div class="orbit-dot dot-3"></div>
+                        </div>
+                        <div class="orbit-ring ring-2">
+                            <div class="orbit-dot dot-4"></div>
+                            <div class="orbit-dot dot-5"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
 
     <!-- about section -->
-    <section class="about" id="about">
-        <h2 class="heading" style="color: #c52548;">About <span>Me</span></h2>
-        <div class="about-img">
-            <img src="images\faraz.jpg" alt="">
-            <span class="circle-spin"></span>
-        </div>
+    <section class="about section section-fade" id="about">
+        <div class="container">
+            <h2 class="heading">About <span class="heading-highlight">Me</span></h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-frame">
+                        <img src="images/faraz.jpg" alt="Mohammed Faraz Kabbo">
+                        <div class="frame-corners">
+                            <div class="corner corner-tl"></div>
+                            <div class="corner corner-tr"></div>
+                            <div class="corner corner-bl"></div>
+                            <div class="corner corner-br"></div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="about-content">
-            <h3>Programmer</h3>
-            <p>I am proficient in programming languages such as Python, Java, and SQL, and have extensive experience with data visualization tools like Tableau and Excel. My ability to analyze large datasets, develop predictive models, and optimize processes has been demonstrated through various projects and internships. In addition, my strong communication and teamwork skills enable me to collaborate effectively with cross-functional teams and stakeholders.</p>
-            <div>
-                <a href="#" class="btn">Read More</a>
+                <div class="about-text">
+                    <div class="text-content">
+                        <h3 class="about-title">Programmer & Developer</h3>
+                        <div class="text-blocks">
+                            <p class="text-block">I am proficient in programming languages such as Python, Java, and SQL, and have extensive experience with data visualization tools like Tableau and Excel. My ability to analyze large datasets, develop predictive models, and optimize processes has been demonstrated through various projects and internships.</p>
+                            <p class="text-block">In addition, my strong communication and teamwork skills enable me to collaborate effectively with cross-functional teams and stakeholders. I'm passionate about solving complex problems and creating innovative solutions that make a real impact.</p>
+                        </div>
+                        <a href="#portfolio" class="btn btn-primary btn-enhanced">
+                            <span>View My Work</span>
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
 
     <!-- Education Section -->
-    <section class="education" id="education">
-        <h2 class="heading" id="head" style="color: #c52548;">My <span>Journey</span></h2>
-        <div class="education-row">
-            <div class="education-column">
-                <h3 class="title">Education</h3>
-
-                <div class="education-box">
-                    <div class="education-content">
-                        <div class="content">
-                            <div class="year"><i class="bx bxs-calendar"></i>2023-2027</div>
-                            <h3>Bachelor's Degree</h3>
-                            <p> Currently pursuing a degree in Computer Science(Hons.) at York University and in my 3rd year
-                            </p>
-                        </div>
-                    </div>
-
-                   
-                    
+    <section class="education section section-fade" id="education">
+        <div class="container">
+            <h2 class="heading">My <span class="heading-highlight">Journey</span></h2>
+            <div class="experience-timeline">
+                <div class="timeline-line">
+                    <div class="timeline-progress"></div>
                 </div>
-            </div>
-
-            <div class="education-column">
-                <h3 class="title">Experience</h3>
-
-                <div class="education-box">
-                    <div class="education-content">
-                        <div class="content">
-                            <div class="year"><i class="bx bxs-calendar"></i>2024 Jan - Current</div>
-                            <h3>Tutor</h3>
-                            <p> Currently tutoring High School students in Mathematics, Science and basic Programming at Megamind Learning Centre, Vaughan , ON
-                            </p>
+                
+                <div class="timeline-item" data-year="2023">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - 2027</div>
+                        <h3 class="timeline-title">Bachelor's Degree - Computer Science</h3>
+                        <p class="timeline-description">Currently pursuing a degree in Computer Science (Hons.) at York University and in my 3rd year</p>
+                        <div class="timeline-tags">
+                            <span class="tag">University</span>
+                            <span class="tag">Computer Science</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="education-content">
-                        <div class="content">
-                            <div class="year"><i class="bx bxs-calendar"></i>2024 - Present</div>
-                            <h3>Co-Founder & Developer - FashionX</h3>
-                            <p>Developed AI recommendation engine and led technical implementation of data processing systems.</p>
+                <div class="timeline-item" data-year="2025">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025 Jan - Present</div>
+                        <h3 class="timeline-title">Web Developer</h3>
+                        <p class="timeline-description">Currently developing a website for The Neural Network Organisation at York University</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Web Development</span>
+                            <span class="tag">Current</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="education-content">
-                        <div class="content">
-                            <div class="year"><i class="bx bxs-calendar"></i>2021- Present</div>
-                            <h3>Animator </h3>
-                            <p> Self employed Professional animator at my own studio (Mew animation studio)
-                            </p>
+                <div class="timeline-item" data-year="2024">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - Present</div>
+                        <h3 class="timeline-title">Co-Founder & Developer - FashionX</h3>
+                        <p class="timeline-description">Developed AI recommendation engine and led technical implementation of data processing systems.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">AI Development</span>
+                            <span class="tag">Co-Founder</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="education-content">
-                        <div class="content">
-                            <div class="year"><i class="bx bxs-calendar"></i>2025 Jan-Present</div>
-                            <h3>Web Developer</h3>
-                            <p>Currently developing a website for The Neural Network Organisation at York University
-                            </p>
+                <div class="timeline-item" data-year="2024">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 Jan - Current</div>
+                        <h3 class="timeline-title">Tutor</h3>
+                        <p class="timeline-description">Currently tutoring High School students in Mathematics, Science and basic Programming at Megamind Learning Centre, Vaughan, ON</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Education</span>
+                            <span class="tag">Programming</span>
                         </div>
                     </div>
-                    
+                </div>
+
+                <div class="timeline-item" data-year="2021">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - Present</div>
+                        <h3 class="timeline-title">Animator</h3>
+                        <p class="timeline-description">Self employed Professional animator at my own studio (Mew animation studio)</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Animation</span>
+                            <span class="tag">Creative</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-  
     <!-- Skills Section -->
-<section class="skills" id="skills">
-    <h2 class="heading" style="color: #c52548;">Skills & <span>Technologies</span></h2>
-    
-    <div class="skills-grid">
-        <!-- Languages Section -->
-        <div class="skills-category">
-            <div class="category-header">
-                <i class='bx bx-code-alt'></i>
-                <h3 style="color: #c52548;">Languages</h3>
-            </div>
-            <div class="skills-list">
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-java'></i>
-                    Java
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-python'></i>
-                    Python
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-javascript'></i>
-                    JavaScript
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-typescript'></i>
-                    TypeScript
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-html5'></i>
-                    HTML/CSS
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bx-code'></i>
-                    R
-                </a>
-            </div>
-        </div>
+    <section class="skills section section-fade" id="skills">
+        <div class="container">
+            <h2 class="heading">Skills & <span class="heading-highlight">Technologies</span></h2>
+            
+            <div class="skills-grid">
+                <!-- Languages Section -->
+                <div class="skill-category" data-category="languages">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class='bx bx-code-alt'></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>Languages</h3>
+                        <div class="category-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item" data-skill="java">
+                            <div class="skill-icon">
+                                <i class='bx bxl-java'></i>
+                            </div>
+                            <span class="skill-name">Java</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="python">
+                            <div class="skill-icon">
+                                <i class='bx bxl-python'></i>
+                            </div>
+                            <span class="skill-name">Python</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="javascript">
+                            <div class="skill-icon">
+                                <i class='bx bxl-javascript'></i>
+                            </div>
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="typescript">
+                            <div class="skill-icon">
+                                <i class='bx bxl-typescript'></i>
+                            </div>
+                            <span class="skill-name">TypeScript</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="html">
+                            <div class="skill-icon">
+                                <i class='bx bxl-html5'></i>
+                            </div>
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="r">
+                            <div class="skill-icon">
+                                <i class='bx bx-code'></i>
+                            </div>
+                            <span class="skill-name">R</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Developer Tools Section -->
-        <div class="skills-category">
-            <div class="category-header">
-                <i class='bx bx-wrench'></i>
-                <h3 style="color: #c52548;">Developer Tools</h3>
-            </div>
-            <div class="skills-list">
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-git'></i>
-                    Git
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-visual-studio'></i>
-                    Visual Studio
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bx-data'></i>
-                    Supabase
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bx-check-shield'></i>
-                    Clerk
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-docker'></i>
-                    Docker
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bx-terminal'></i>
-                    Command Line
-                </a>
-            </div>
-        </div>
+                <!-- Developer Tools Section -->
+                <div class="skill-category" data-category="tools">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class='bx bx-wrench'></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>Developer Tools</h3>
+                        <div class="category-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item" data-skill="git">
+                            <div class="skill-icon">
+                                <i class='bx bxl-git'></i>
+                            </div>
+                            <span class="skill-name">Git</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="vs">
+                            <div class="skill-icon">
+                                <i class='bx bxl-visual-studio'></i>
+                            </div>
+                            <span class="skill-name">Visual Studio</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="supabase">
+                            <div class="skill-icon">
+                                <i class='bx bx-data'></i>
+                            </div>
+                            <span class="skill-name">Supabase</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="clerk">
+                            <div class="skill-icon">
+                                <i class='bx bx-check-shield'></i>
+                            </div>
+                            <span class="skill-name">Clerk</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="docker">
+                            <div class="skill-icon">
+                                <i class='bx bxl-docker'></i>
+                            </div>
+                            <span class="skill-name">Docker</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="terminal">
+                            <div class="skill-icon">
+                                <i class='bx bx-terminal'></i>
+                            </div>
+                            <span class="skill-name">Command Line</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Libraries & Frameworks Section -->
-        <div class="skills-category">
-            <div class="category-header">
-                <i class='bx bx-library'></i>
-                <h3 style="color: #c52548;">Libraries & Frameworks</h3>
-            </div>
-            <div class="skills-list">
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-react'></i>
-                    React
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-tailwind-css'></i>
-                    Tailwind CSS
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bxl-nodejs'></i>
-                    Next.js
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bx-chart'></i>
-                    NumPy
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bx-line-chart'></i>
-                    Matplotlib
-                </a>
-                <a href="#" class="skill-box">
-                    <i class='bx bx-table'></i>
-                    Pandas
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-</section>
-
-    <!-- Projects section -->
-    <section class="portfolio" id="portfolio">
-        <h2 class="heading"> <span>Projects</span></h2>
-
-        <div class="portfolio-container">
-            <div class="portfolio-box">
-                <img src="./images/minutemaster.jpg" alt="MinuteMaster">
-                <div class="portfolio-layer">
-                    <h4>MinuteMaster — Geesehacks 2025</h4>
-                    <p>Built scalable audio processing system using AWS services achieving 78% accuracy and 100ms latency. Implemented efficient cloud storage with AWS S3.</p>
-                    <a href="https://github.com/farazkabbo/Geesehacks2025"><i class="bx bx-link-external"></i></a>
+                <!-- Libraries & Frameworks Section -->
+                <div class="skill-category" data-category="frameworks">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class='bx bx-library'></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>Libraries & Frameworks</h3>
+                        <div class="category-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item" data-skill="react">
+                            <div class="skill-icon">
+                                <i class='bx bxl-react'></i>
+                            </div>
+                            <span class="skill-name">React</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="tailwind">
+                            <div class="skill-icon">
+                                <i class='bx bxl-tailwind-css'></i>
+                            </div>
+                            <span class="skill-name">Tailwind CSS</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="nextjs">
+                            <div class="skill-icon">
+                                <i class='bx bxl-nodejs'></i>
+                            </div>
+                            <span class="skill-name">Next.js</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="numpy">
+                            <div class="skill-icon">
+                                <i class='bx bx-chart'></i>
+                            </div>
+                            <span class="skill-name">NumPy</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="matplotlib">
+                            <div class="skill-icon">
+                                <i class='bx bx-line-chart'></i>
+                            </div>
+                            <span class="skill-name">Matplotlib</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="pandas">
+                            <div class="skill-icon">
+                                <i class='bx bx-table'></i>
+                            </div>
+                            <span class="skill-name">Pandas</span>
+                            <div class="skill-level">
+                                <div class="level-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        
-            <div class="portfolio-box">
-                <img src="./images/studybuddy.jpg" alt="StudyBuddy">
-                <div class="portfolio-layer">
-                    <h4>StudyBuddy Platform</h4>
-                    <p>Full-stack application with 95% test coverage, implementing lecture summarization using Google Gemini LLM achieving 88% accuracy.</p>
-                    <a href="https://lnkd.in/gpRkpPMB"><i class="bx bx-link-external"></i></a>
-                </div>
-            </div>
-        
-            <div class="portfolio-box">
-                <img src="./images/Healthee.jpg" alt="FashionX">
-                <div class="portfolio-layer">
-                    <h4>Healthee- CTRL+HACK+DEL 2024</h4>
-                    <p>Healthee is an innovative platform designed to transform how diabetics manage their health by providing real-time glucose monitoring and personalized support</p>
-                    <a href="https://github.com/farazkabbo/Healthee"><i class="bx bx-link-external"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-box">
-            <img src="./images/case-study.jpg" alt="FashionX">
-            <div class="portfolio-layer">
-                <h4>Cyclist Bike-Share Analysis Case Study</h4>
-                <p>Did a research on a Case Study where I engineered an ETL pipeline processing 2.5M+ rows of cycling data, reducing query time by 75% using BigQuery </p>
-                <a href="https://github.com/farazkabbo/Capstone-Cyclist-research-project-"><i class="bx bx-link-external"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-box">
-        <img src="./images/Screenboard.jpg" alt="FashionX">
-        <div class="portfolio-layer">
-            <h4>Screenboard</h4>
-            <p>Engineered an ETL pipeline processing 2.5M+ rows of cycling data, reducing query time by 75% using BigQuery</p>
-            <a href="https://github.com/farazkabbo/ScreenBoard"><i class="bx bx-link-external"></i></a>
-        </div>
-    </div>
-</div>
-           
         </div>
     </section>
 
+    <!-- Portfolio Section -->
+    <section class="portfolio section section-fade" id="portfolio">
+        <div class="container">
+            <h2 class="heading"><span class="heading-highlight">Projects</span></h2>
 
-    <!-- Team section -->
-    <section class="team">
-        <h2 class="heading" style="color: #c52548;">Certificates <span>& Licenses</span></h2>
-        <div class="container team_container">
-            <article class="team_member">
-                <div class="team_member-image">
-                    <img src="./images/card-3.png" alt="">
+            <div class="portfolio-grid">
+                <div class="portfolio-item portfolio-box" data-category="web">
+                    <div class="portfolio-image-wrapper">
+                        <img src="./images/minutemaster.jpg" alt="MinuteMaster" class="portfolio-image">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <div class="project-tags">
+                                    <span class="tag">AWS</span>
+                                    <span class="tag">Audio Processing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4 class="portfolio-title">MinuteMaster — Geesehacks 2025</h4>
+                        <p class="portfolio-description">Built scalable audio processing system using AWS services achieving 78% accuracy and 100ms latency. Implemented efficient cloud storage with AWS S3.</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-badge">AWS</span>
+                            <span class="tech-badge">S3</span>
+                            <span class="tech-badge">Audio Processing</span>
+                        </div>
+                        <a href="https://github.com/farazkabbo/Geesehacks2025" class="portfolio-link">
+                            <span>View Project</span>
+                            <i class="bx bx-link-external"></i>
+                        </a>
+                    </div>
+                    <div class="portfolio-layer">
+                        <div class="layer-content">
+                            <h4>MinuteMaster — Geesehacks 2025</h4>
+                            <p>Built scalable audio processing system using AWS services achieving 78% accuracy and 100ms latency. Implemented efficient cloud storage with AWS S3.</p>
+                            <a href="https://github.com/farazkabbo/Geesehacks2025" class="layer-link">
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="team_member-info">
-                    <h4>Data Analysis Course</h4>
-                    <p>Google</p>
-                </div>
-                
-            </article>
 
-            <article class="team_member">
-                <div class="team_member-image">
-                    <img src="./images/SQL for Data Science.PNG" alt="">
+                <div class="portfolio-item portfolio-box" data-category="ai">
+                    <div class="portfolio-image-wrapper">
+                        <img src="./images/studybuddy.jpg" alt="StudyBuddy" class="portfolio-image">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <div class="project-tags">
+                                    <span class="tag">AI/ML</span>
+                                    <span class="tag">Full-Stack</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4 class="portfolio-title">StudyBuddy Platform</h4>
+                        <p class="portfolio-description">Full-stack application with 95% test coverage, implementing lecture summarization using Google Gemini LLM achieving 88% accuracy.</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-badge">Google Gemini</span>
+                            <span class="tech-badge">LLM</span>
+                            <span class="tech-badge">Full-Stack</span>
+                        </div>
+                        <a href="https://lnkd.in/gpRkpPMB" class="portfolio-link">
+                            <span>View Project</span>
+                            <i class="bx bx-link-external"></i>
+                        </a>
+                    </div>
+                    <div class="portfolio-layer">
+                        <div class="layer-content">
+                            <h4>StudyBuddy Platform</h4>
+                            <p>Full-stack application with 95% test coverage, implementing lecture summarization using Google Gemini LLM achieving 88% accuracy.</p>
+                            <a href="https://lnkd.in/gpRkpPMB" class="layer-link">
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="team_member-info">
-                    <h4>Basic SQL </h4>
-                    <p>IBM</p>
-                </div>
-        
-            </article>
 
-            <article class="team_member">
-                <div class="team_member-image">
-                    <img src="./images/git.jpg" alt="">
+                <div class="portfolio-item portfolio-box" data-category="health">
+                    <div class="portfolio-image-wrapper">
+                        <img src="./images/Healthee.jpg" alt="Healthee" class="portfolio-image">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <div class="project-tags">
+                                    <span class="tag">Healthcare</span>
+                                    <span class="tag">IoT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4 class="portfolio-title">Healthee- CTRL+HACK+DEL 2024</h4>
+                        <p class="portfolio-description">Healthee is an innovative platform designed to transform how diabetics manage their health by providing real-time glucose monitoring and personalized support</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-badge">Healthcare</span>
+                            <span class="tech-badge">Real-time</span>
+                            <span class="tech-badge">Monitoring</span>
+                        </div>
+                        <a href="https://github.com/farazkabbo/Healthee" class="portfolio-link">
+                            <span>View Project</span>
+                            <i class="bx bx-link-external"></i>
+                        </a>
+                    </div>
+                    <div class="portfolio-layer">
+                        <div class="layer-content">
+                            <h4>Healthee- CTRL+HACK+DEL 2024</h4>
+                            <p>Healthee is an innovative platform designed to transform how diabetics manage their health by providing real-time glucose monitoring and personalized support</p>
+                            <a href="https://github.com/farazkabbo/Healthee" class="layer-link">
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="team_member-info">
-                    <h4>Introduction to git and github </h4>
-                    <p>IBM</p>
+
+                <div class="portfolio-item portfolio-box" data-category="data">
+                    <div class="portfolio-image-wrapper">
+                        <img src="./images/case-study.jpg" alt="Case Study" class="portfolio-image">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <div class="project-tags">
+                                    <span class="tag">Data Analysis</span>
+                                    <span class="tag">BigQuery</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4 class="portfolio-title">Cyclist Bike-Share Analysis Case Study</h4>
+                        <p class="portfolio-description">Did a research on a Case Study where I engineered an ETL pipeline processing 2.5M+ rows of cycling data, reducing query time by 75% using BigQuery</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-badge">BigQuery</span>
+                            <span class="tech-badge">ETL</span>
+                            <span class="tech-badge">Data Analysis</span>
+                        </div>
+                        <a href="https://github.com/farazkabbo/Capstone-Cyclist-research-project-" class="portfolio-link">
+                            <span>View Project</span>
+                            <i class="bx bx-link-external"></i>
+                        </a>
+                    </div>
+                    <div class="portfolio-layer">
+                        <div class="layer-content">
+                            <h4>Cyclist Bike-Share Analysis Case Study</h4>
+                            <p>Did a research on a Case Study where I engineered an ETL pipeline processing 2.5M+ rows of cycling data, reducing query time by 75% using BigQuery</p>
+                            <a href="https://github.com/farazkabbo/Capstone-Cyclist-research-project-" class="layer-link">
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                
-            </article>
-    </div>
+
+                <div class="portfolio-item portfolio-box" data-category="web">
+                    <div class="portfolio-image-wrapper">
+                        <img src="./images/Screenboard.jpg" alt="Screenboard" class="portfolio-image">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <div class="project-tags">
+                                    <span class="tag">Web App</span>
+                                    <span class="tag">Dashboard</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h4 class="portfolio-title">Screenboard</h4>
+                        <p class="portfolio-description">Engineered an ETL pipeline processing 2.5M+ rows of cycling data, reducing query time by 75% using BigQuery</p>
+                        <div class="portfolio-tech">
+                            <span class="tech-badge">Web Development</span>
+                            <span class="tech-badge">Dashboard</span>
+                            <span class="tech-badge">Analytics</span>
+                        </div>
+                        <a href="https://github.com/farazkabbo/ScreenBoard" class="portfolio-link">
+                            <span>View Project</span>
+                            <i class="bx bx-link-external"></i>
+                        </a>
+                    </div>
+                    <div class="portfolio-layer">
+                        <div class="layer-content">
+                            <h4>Screenboard</h4>
+                            <p>Engineered an ETL pipeline processing 2.5M+ rows of cycling data, reducing query time by 75% using BigQuery</p>
+                            <a href="https://github.com/farazkabbo/ScreenBoard" class="layer-link">
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- Certificates section -->
+    <section class="team section section-fade">
+        <div class="container">
+            <h2 class="heading">Certificates <span class="heading-highlight">& Licenses</span></h2>
+            <div class="team_container">
+                <article class="team_member certificate-card">
+                    <div class="team_member-image">
+                        <img src="./images/card-3.png" alt="Google Data Analysis Certificate">
+                        <div class="certificate-overlay">
+                            <div class="certificate-badge">
+                                <i class="bx bx-badge-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team_member-info">
+                        <h4>Data Analysis Course</h4>
+                        <p>Google</p>
+                        <div class="certificate-tags">
+                            <span class="cert-tag">Data Analysis</span>
+                            <span class="cert-tag">Google</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="team_member certificate-card">
+                    <div class="team_member-image">
+                        <img src="./images/SQL for Data Science.PNG" alt="IBM SQL Certificate">
+                        <div class="certificate-overlay">
+                            <div class="certificate-badge">
+                                <i class="bx bx-badge-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team_member-info">
+                        <h4>Basic SQL</h4>
+                        <p>IBM</p>
+                        <div class="certificate-tags">
+                            <span class="cert-tag">SQL</span>
+                            <span class="cert-tag">IBM</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="team_member certificate-card">
+                    <div class="team_member-image">
+                        <img src="./images/git.jpg" alt="IBM Git Certificate">
+                        <div class="certificate-overlay">
+                            <div class="certificate-badge">
+                                <i class="bx bx-badge-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team_member-info">
+                        <h4>Introduction to Git and GitHub</h4>
+                        <p>IBM</p>
+                        <div class="certificate-tags">
+                            <span class="cert-tag">Git</span>
+                            <span class="cert-tag">Version Control</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
 
     <!-- FAQs Section -->
-    <section class="faqs">
-        <h2 class="heading" 
-        style="color: #c52548;">Frequently Asked <span>Questions</span></h2>
-        <div class="container faqs_container">
+    <section class="faqs section section-fade">
+        <div class="container">
+            <h2 class="heading">Frequently Asked <span class="heading-highlight">Questions</span></h2>
+            <div class="faqs_container">
 
-            <article class="faq">
-                <div class="faq_icon"><i class="bx bx-plus"></i></div>
-                <div class="question_anser">
-                    <h4>What is your experience with data analysis?</h4>
-                    <p>I have experience analyzing large datasets using Python libraries such as pandas and NumPy. I have also used data visualization tools like Tableau and Excel to present data insights effectively.</p>
-                </div>
-            </article>
-            <article class="faq">
-                <div class="faq_icon"><i class="bx bx-plus"></i></div>
-                <div class="question_anser">
-                    <h4>How do you approach problem-solving?</h4>
-                    <p>I approach problem-solving by breaking down the problem into smaller, manageable parts. I use logical reasoning and algorithmic thinking to devise solutions. I also leverage online resources, documentation, and collaborative discussions to find the best solutions.</p>
-                </div>
-            </article>
-            <article class="faq">
-                <div class="faq_icon"><i class="bx bx-plus"></i></div>
-                <div class="question_anser">
-                    <h4>What motivates you to pursue a career in computer science?</h4>
-                    <p>I am motivated by the ever-evolving nature of technology and the endless possibilities it offers. I enjoy solving complex problems and creating solutions that can make a positive impact. My passion for continuous learning and innovation drives me to pursue a career in computer science.</p>
-                </div>
-            </article>
-            <article class="faq">
-                <div class="faq_icon"><i class="bx bx-plus"></i></div>
-                <div class="question_anser">
-                    <h4>What tools and technologies do you use for web development?</h4>
-                    <p>For web development, I use HTML, CSS, JavaScript, and frameworks like React.js for the frontend. For the backend, I use Node.js, Express.js, and databases like MongoDB and MySQL.</p>
-                </div>
-            </article>
-            <article class="faq">
-                <div class="faq_icon"><i class="bx bx-plus"></i></div>
-                <div class="question_anser">
-                    <h4>How do you stay updated with the latest technology trends?</h4>
-                    <p>I stay updated by following technology blogs, participating in online courses, attending webinars, and being an active member of various tech communities. I also experiment with new technologies in my personal projects</p>
-                </div>
-            </article>
-            <article class="faq">
-                <div class="faq_icon"><i class="bx bx-plus"></i></div>
-                <div class="question_anser">
-                    <h4>What tools do you use for debugging?</h4>
-                    <p>Node.js Debugger: Node.js has a built-in debugger that can be used through the command line or integrated into IDEs like Visual Studio Code.
-                        JSHint/ESLint: Linting tools that help detect potential errors and enforce coding standards.
-                        Python
-                        PDB (Python Debugger): A built-in interactive debugger for Python.
-                        PyCharm: An IDE with integrated debugging tools for Python.</p>
-                </div>
-            </article>
+                <article class="faq faq-enhanced">
+                    <div class="faq_icon">
+                        <i class="bx bx-plus"></i>
+                        <i class="bx bx-minus"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <div class="question_answer">
+                        <h4 class="faq-question">What is your experience with data analysis?</h4>
+                        <div class="faq-answer">
+                            <p>I have experience analyzing large datasets using Python libraries such as pandas and NumPy. I have also used data visualization tools like Tableau and Excel to present data insights effectively.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="faq faq-enhanced">
+                    <div class="faq_icon">
+                        <i class="bx bx-plus"></i>
+                        <i class="bx bx-minus"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <div class="question_answer">
+                        <h4 class="faq-question">How do you approach problem-solving?</h4>
+                        <div class="faq-answer">
+                            <p>I approach problem-solving by breaking down the problem into smaller, manageable parts. I use logical reasoning and algorithmic thinking to devise solutions. I also leverage online resources, documentation, and collaborative discussions to find the best solutions.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="faq faq-enhanced">
+                    <div class="faq_icon">
+                        <i class="bx bx-plus"></i>
+                        <i class="bx bx-minus"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <div class="question_answer">
+                        <h4 class="faq-question">What motivates you to pursue a career in computer science?</h4>
+                        <div class="faq-answer">
+                            <p>I am motivated by the ever-evolving nature of technology and the endless possibilities it offers. I enjoy solving complex problems and creating solutions that can make a positive impact. My passion for continuous learning and innovation drives me to pursue a career in computer science.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="faq faq-enhanced">
+                    <div class="faq_icon">
+                        <i class="bx bx-plus"></i>
+                        <i class="bx bx-minus"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <div class="question_answer">
+                        <h4 class="faq-question">What tools and technologies do you use for web development?</h4>
+                        <div class="faq-answer">
+                            <p>For web development, I use HTML, CSS, JavaScript, and frameworks like React.js for the frontend. For the backend, I use Node.js, Express.js, and databases like MongoDB and MySQL.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="faq faq-enhanced">
+                    <div class="faq_icon">
+                        <i class="bx bx-plus"></i>
+                        <i class="bx bx-minus"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <div class="question_answer">
+                        <h4 class="faq-question">How do you stay updated with the latest technology trends?</h4>
+                        <div class="faq-answer">
+                            <p>I stay updated by following technology blogs, participating in online courses, attending webinars, and being an active member of various tech communities. I also experiment with new technologies in my personal projects</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="faq faq-enhanced">
+                    <div class="faq_icon">
+                        <i class="bx bx-plus"></i>
+                        <i class="bx bx-minus"></i>
+                        <div class="icon-bg"></div>
+                    </div>
+                    <div class="question_answer">
+                        <h4 class="faq-question">What tools do you use for debugging?</h4>
+                        <div class="faq-answer">
+                            <p>Node.js Debugger: Node.js has a built-in debugger that can be used through the command line or integrated into IDEs like Visual Studio Code. JSHint/ESLint: Linting tools that help detect potential errors and enforce coding standards. Python PDB (Python Debugger): A built-in interactive debugger for Python. PyCharm: An IDE with integrated debugging tools for Python.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
-
     <!-- contact section -->
-    <section class="contact" id="contact">
-        <h2 class="heading" style="color: #c52548;">Contact <span>Me</span></h2>
-        <form action="" id="frm">
-
-            <div class="input-box">
-                <div class="input-field">
-                    <input type="text" placeholder="First Name" name="fname" required>
-                    <span class="focus"></span>
+    <section class="contact section section-fade" id="contact">
+        <div class="container">
+            <h2 class="heading">Contact <span class="heading-highlight">Me</span></h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item contact-enhanced">
+                        <div class="contact-icon">
+                            <i class='bx bx-mail-send'></i>
+                            <div class="icon-ripple"></div>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>kabbofaraz@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item contact-enhanced">
+                        <div class="contact-icon">
+                            <i class='bx bx-phone'></i>
+                            <div class="icon-ripple"></div>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>Available upon request</p>
+                        </div>
+                    </div>
+                    <div class="contact-item contact-enhanced">
+                        <div class="contact-icon">
+                            <i class='bx bx-location-plus'></i>
+                            <div class="icon-ripple"></div>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Toronto, Ontario, Canada</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="input-field">
-                    <input type="text" placeholder="Last Name" name="lname" required>
-                    <span class="focus"></span>
-                </div>
-            </div>
 
-            <div class="input-box">
-                <div class="input-field">
-                    <input type="email" placeholder="Email Address" name="email" required>
-                    <span class="focus"></span>
-                </div>
-                <div class="input-field">
-                    <input type="number" placeholder="Phone Number" name="number" required>
-                    <span class="focus"></span>
-                </div>
-            </div>
+                <form class="contact-form contact-form-enhanced" id="frm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input form-input-enhanced" name="fname" required>
+                            <div class="input-border"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input form-input-enhanced" name="lname" required>
+                            <div class="input-border"></div>
+                        </div>
+                    </div>
 
-            <div class="textarea-field">
-                <textarea required name="msg" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-                <span class="focus"></span>
-            </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input form-input-enhanced" name="email" required>
+                            <div class="input-border"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input form-input-enhanced" name="number" required>
+                            <div class="input-border"></div>
+                        </div>
+                    </div>
 
-            <div class="message-btn">
-                <button class="btn">Send Message</button>
+                    <div class="form-group">
+                        <label class="form-label">Your Message</label>
+                        <textarea class="form-textarea form-input-enhanced" name="msg" rows="6" required></textarea>
+                        <div class="input-border"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span class="btn-text">Send Message</span>
+                        <div class="btn-loader">
+                            <div class="loader-spinner"></div>
+                        </div>
+                        <i class="bx bx-send"></i>
+                    </button>
+                </form>
             </div>
-        </form>
+        </div>
     </section>
 
     <!-- footer section -->
-
-    <footer class="footer">
-        <div class="footer-text">
-            <p>Copyright &copy; 2025 by Mew studio | All Rights Reserved.</p>
-        </div>
-        <div class="footer-iconTop">
-            <a href="#"><i class="bx bx-up-arrow-alt"></i></a>
+    <footer class="footer footer-enhanced">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo footer-logo">
+                    <span class="logo-text">FarazKabbo</span>
+                    <div class="logo-glow"></div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.youtube.com/channel/UCnhfV-TI5CosdvQPdabyP1A" class="footer-social-link">
+                        <i class='bx bxl-youtube'></i>
+                        <div class="social-ripple"></div>
+                    </a>
+                    <a href="https://www.instagram.com/mewdiegamer/" class="footer-social-link">
+                        <i class='bx bxl-instagram'></i>
+                        <div class="social-ripple"></div>
+                    </a>
+                    <a href="https://github.com/farazkabbo" class="footer-social-link">
+                        <i class='bx bxl-github'></i>
+                        <div class="social-ripple"></div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mohammed-faraz-kabbo/" class="footer-social-link">
+                        <i class='bx bxl-linkedin'></i>
+                        <div class="social-ripple"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-text">
+                <p>Copyright &copy; 2025 by Mew studio | All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- type text animation  -->
+    <!-- Back to top button -->
+    <a href="#home" class="back-to-top back-to-top-enhanced">
+        <i class='bx bx-up-arrow-alt'></i>
+        <div class="top-ripple"></div>
+    </a>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">FarazKabbo</div>
+        </div>
+    </div>
+
+    <!-- Particles Container -->
+    <div class="particles-container">
+        <canvas id="particles-canvas"></canvas>
+    </div>
+
+    <!-- type text animation -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
-
-    <!-- ScrollReavel -->
+    <!-- ScrollReveal -->
     <script src="https://unpkg.com/scrollreveal"></script>
 
     <!-- script -->
     <script src="./js/script.js"></script>
+
 </body>
 </html>
