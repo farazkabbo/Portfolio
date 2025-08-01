@@ -2657,3 +2657,217 @@ body {
         transition: none;
     }
 }
+
+/* will remove this later */
+.video-showcase {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.video-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 70%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.video-content {
+    position: relative;
+    z-index: 2;
+}
+
+.video-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.video-container {
+    position: relative;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-2xl);
+    background: var(--bg-card);
+    transition: all var(--transition-spring);
+}
+
+.video-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.3);
+}
+
+.showcase-video,
+.youtube-video {
+    width: 100%;
+    height: 350px;
+    border-radius: var(--radius-2xl);
+    object-fit: cover;
+    transition: all var(--transition-normal);
+}
+
+.youtube-video {
+    border: none;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+}
+
+.video-container:hover .video-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--primary-color);
+    transform: scale(0.8);
+    transition: all var(--transition-spring);
+    box-shadow: var(--shadow-xl);
+}
+
+.video-overlay:hover .play-button {
+    transform: scale(1);
+    background: white;
+}
+
+.video-details {
+    padding: 2rem;
+}
+
+.video-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.video-description {
+    font-size: 1.6rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.video-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+}
+
+.stat-item:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.stat-item i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    transition: color var(--transition-normal);
+}
+
+.stat-item:hover i {
+    color: white;
+}
+
+.stat-item span {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+/* Responsive Design for Video Section */
+@media (max-width: 768px) {
+    .video-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .showcase-video,
+    .youtube-video {
+        height: 250px;
+    }
+    
+    .play-button {
+        width: 60px;
+        height: 60px;
+        font-size: 2.4rem;
+    }
+    
+    .video-stats {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .showcase-video,
+    .youtube-video {
+        height: 200px;
+    }
+    
+    .video-details {
+        padding: 1.5rem;
+    }
+    
+    .video-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Animation for video section */
+.video-container {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 0.8s ease-out 0.3s forwards;
+}
+
+.video-details {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideInRight 0.8s ease-out 0.5s forwards;
+}
+
+/* will remove upto this later */

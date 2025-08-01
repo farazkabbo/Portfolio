@@ -836,3 +836,55 @@ if ('performance' in window) {
         console.log(`Page loaded in ${loadTime}ms`);
     });
 }
+
+// pore remove korbe ei part
+document.addEventListener('DOMContentLoaded', function() {
+    // Video overlay click handler
+    const videoOverlay = document.querySelector('.video-overlay');
+    const video = document.querySelector('.showcase-video');
+    
+    if (videoOverlay && video) {
+        videoOverlay.addEventListener('click', function() {
+            video.play();
+            videoOverlay.style.opacity = '0';
+            videoOverlay.style.pointerEvents = 'none';
+        });
+        
+        // Show overlay again when video is paused
+        video.addEventListener('pause', function() {
+            videoOverlay.style.opacity = '1';
+            videoOverlay.style.pointerEvents = 'auto';
+        });
+        
+        video.addEventListener('ended', function() {
+            videoOverlay.style.opacity = '1';
+            videoOverlay.style.pointerEvents = 'auto';
+        });
+    }
+    
+    // Lazy loading for video
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '50px'
+    };
+    
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const video = entry.target;
+                if (video.dataset.src) {
+                    video.src = video.dataset.src;
+                    video.load();
+                    videoObserver.unobserve(video);
+                }
+            }
+        });
+    }, observerOptions);
+    
+    // Observe videos for lazy loading
+    document.querySelectorAll('video[data-src]').forEach(video => {
+        videoObserver.observe(video);
+    });
+});
+
+// upto this 
