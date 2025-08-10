@@ -2871,3 +2871,115 @@ body {
 }
 
 /* will remove upto this later */
+
+
+.goals-section {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-spring);
+}
+
+.goals-section:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.goals-section h3 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.goal-category {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+}
+
+.goal-category:hover {
+    transform: translateX(10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.goal-category h4 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.goal-category h4::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+.goal-category ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.goal-category li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    transition: all var(--transition-normal);
+}
+
+.goal-category li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: transform var(--transition-normal);
+}
+
+.goal-category li:hover {
+    color: var(--text-primary);
+    transform: translateX(5px);
+}
+
+.goal-category li:hover::before {
+    transform: translateX(5px);
+    color: var(--secondary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .goals-section {
+        padding: 2rem;
+    }
+
+    .goal-category {
+        padding: 1.5rem;
+    }
+
+    .goal-category h4 {
+        font-size: 1.6rem;
+    }
+
+    .goal-category li {
+        font-size: 1.4rem;
+    }
+}
