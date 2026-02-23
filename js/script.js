@@ -1,6 +1,7 @@
-// Modern Portfolio Interactive Features
+// Modern Portfolio Interactive Features with Three.js Particles
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all systems
+    initThreeParticles();
     initCustomCursor();
     initLiquidNav();
     initMagneticButtons();
@@ -11,7 +12,150 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initParallax();
     initCounter();
+    initProjectCards3D();
 });
+
+// Three.js Floating Particles
+function initThreeParticles() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas || window.matchMedia('(pointer: coarse)').matches) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    // Elegant color palette
+    const colors = [
+        new THREE.Color(0x667eea), // Primary purple-blue
+        new THREE.Color(0x764ba2), // Secondary purple
+        new THREE.Color(0xf093fb), // Accent pink
+        new THREE.Color(0x4facfe), // Light blue
+        new THREE.Color(0x00f2fe)  // Cyan
+    ];
+    
+    // Create particles
+    const particleCount = 100;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colorsArray = new Float32Array(particleCount * 3);
+    const sizes = new Float32Array(particleCount);
+    const speeds = [];
+    
+    for (let i = 0; i < particleCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 20;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+        
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        colorsArray[i * 3] = color.r;
+        colorsArray[i * 3 + 1] = color.g;
+        colorsArray[i * 3 + 2] = color.b;
+        
+        sizes[i] = Math.random() * 0.1 + 0.05;
+        speeds.push({
+            x: (Math.random() - 0.5) * 0.01,
+            y: (Math.random() - 0.5) * 0.01,
+            z: (Math.random() - 0.5) * 0.005
+        });
+    }
+    
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+    
+    const material = new THREE.PointsMaterial({
+        size: 0.1,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending
+    });
+    
+    const particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+    
+    // Add connecting lines
+    const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x667eea,
+        transparent: true,
+        opacity: 0.1
+    });
+    
+    camera.position.z = 5;
+    
+    // Mouse interaction
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+    
+    // Animation loop
+    let animationId;
+    function animate() {
+        animationId = requestAnimationFrame(animate);
+        
+        targetX += (mouseX - targetX) * 0.05;
+        targetY += (mouseY - targetY) * 0.05;
+        
+        const positions = geometry.attributes.position.array;
+        
+        for (let i = 0; i < particleCount; i++) {
+            // Update positions
+            positions[i * 3] += speeds[i].x + (targetX * 0.01);
+            positions[i * 3 + 1] += speeds[i].y + (targetY * 0.01);
+            positions[i * 3 + 2] += speeds[i].z;
+            
+            // Boundary check
+            if (Math.abs(positions[i * 3]) > 10) speeds[i].x *= -1;
+            if (Math.abs(positions[i * 3 + 1]) > 10) speeds[i].y *= -1;
+            if (Math.abs(positions[i * 3 + 2]) > 5) speeds[i].z *= -1;
+            
+            // Mouse attraction
+            const dx = targetX * 5 - positions[i * 3];
+            const dy = targetY * 5 - positions[i * 3 + 1];
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist < 3) {
+                positions[i * 3] += dx * 0.01;
+                positions[i * 3 + 1] += dy * 0.01;
+            }
+        }
+        
+        geometry.attributes.position.needsUpdate = true;
+        
+        // Rotate entire system slowly
+        particles.rotation.y += 0.001;
+        particles.rotation.x += 0.0005;
+        
+        renderer.render(scene, camera);
+    }
+    
+    animate();
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    
+    // Handle visibility change
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            cancelAnimationFrame(animationId);
+        } else {
+            animate();
+        }
+    });
+}
 
 // Custom Cursor
 function initCustomCursor() {
@@ -51,7 +195,7 @@ function initCustomCursor() {
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.background = 'rgba(99, 102, 241, 0.1)';
+            cursorOutline.style.background = 'rgba(102, 126, 234, 0.1)';
         });
         el.addEventListener('mouseleave', () => {
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -328,7 +472,7 @@ function initFormHandler() {
         btnLoading.style.display = 'none';
         btnText.textContent = 'Message Sent!';
         btnText.style.opacity = '1';
-        btn.style.background = 'var(--success-color, #10b981)';
+        btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
         
         form.reset();
         
@@ -371,7 +515,6 @@ function initThemeToggle() {
 // Parallax Effect
 function initParallax() {
     const heroImage = document.querySelector('.image-container');
-    const blobs = document.querySelectorAll('.gradient-blob');
     
     if (window.matchMedia('(pointer: coarse)').matches) return;
     
@@ -382,11 +525,6 @@ function initParallax() {
         if (heroImage) {
             heroImage.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
         }
-        
-        blobs.forEach((blob, index) => {
-            const speed = (index + 1) * 10;
-            blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-        });
     });
 }
 
@@ -422,6 +560,37 @@ function initCounter() {
     observer.observe(badge);
 }
 
+// 3D Project Cards with Tilt Effect
+function initProjectCards3D() {
+    const cards = document.querySelectorAll('.project-card');
+    
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    
+    cards.forEach(card => {
+        const wrapper = card.querySelector('.project-3d-wrapper');
+        
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            wrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            card.style.transform = 'translateY(-10px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            wrapper.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            card.style.transform = 'translateY(0)';
+        });
+    });
+}
+
 // Smooth Scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -436,27 +605,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth'
             });
         }
-    });
-});
-
-// Tilt Effect for project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
     });
 });
 
@@ -502,7 +650,7 @@ class TextScramble {
                     char = this.randomChar();
                     this.queue[i].char = char;
                 }
-                output += `<span style="color: var(--primary)">${char}</span>`;
+                output += `<span style="background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${char}</span>`;
             } else {
                 output += from;
             }

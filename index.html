@@ -13,6 +13,9 @@
     <!-- Icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
     <!-- Favicon -->
     <link rel="shortcut icon" href="./images/channel logo.png" type="image/x-icon">
     
@@ -27,6 +30,9 @@
     
     <!-- Grain Overlay -->
     <div class="grain-overlay"></div>
+    
+    <!-- Three.js Canvas for Particles -->
+    <canvas id="particle-canvas"></canvas>
     
     <!-- Progress Bar -->
     <div class="scroll-progress"></div>
@@ -61,12 +67,6 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg">
-            <div class="gradient-blob blob-1"></div>
-            <div class="gradient-blob blob-2"></div>
-            <div class="gradient-blob blob-3"></div>
-        </div>
-        
         <div class="hero-grid"></div>
         
         <div class="container hero-container">
@@ -252,11 +252,30 @@
                     </div>
                 </div>
                 
+                
                 <div class="timeline-item" data-reveal="up" data-delay="100">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="date">May - Aug 2025</span>
-                        <h3>Program Research Mentor</h3>
+                        <span class="date">September 2025 - Present</span>
+                        <h3>Software Developer Engineer Intern</h3>
+                        <p class="company"> Ontario Government</p>
+                        <ul>
+                            <li>Working as a backend developer</li>
+                            
+                        </ul>
+                        <div class="tags">
+                            <span>Education</span>
+                            <span>AI</span>
+                            <span>Mentorship</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-reveal="up" data-delay="100">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="date">May 2025 - Aug 2025</span>
+                        <h3>Engineering Researcher</h3>
                         <p class="company">k2i Academy</p>
                         <ul>
                             <li>Mentored high school students in software engineering and AI</li>
@@ -287,7 +306,7 @@
                 <div class="timeline-item" data-reveal="up" data-delay="300">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="date">2024 - Present</span>
+                        <span class="date">Oct 2024 - Feb 2025</span>
                         <h3>Co-Founder & Developer</h3>
                         <p class="company">FashionX</p>
                         <p>Developed AI recommendation engine and led technical implementation</p>
@@ -396,7 +415,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section with 3D Cards -->
     <section class="projects section" id="portfolio">
         <div class="container">
             <h2 class="section-title" data-reveal>
@@ -405,64 +424,134 @@
             </h2>
             
             <div class="projects-grid">
+                <!-- Featured Project -->
                 <div class="project-card featured" data-reveal="up">
-                    <div class="project-image">
-                        <img src="./images/gallery.jpg" alt="Vroomi">
-                        <div class="project-overlay"></div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <span class="project-badge">SpurHacks 2025 - 3rd Place</span>
-                            <h3>Vroomi</h3>
+                    <div class="project-3d-wrapper">
+                        <div class="project-image">
+                            <img src="./images/gallery.jpg" alt="Vroomi">
+                            <div class="project-overlay"></div>
                         </div>
-                        <p>Campus-first ride-sharing platform connecting students for safe, split-cost transportation.</p>
-                        <div class="project-tech">
-                            <span>Flask</span>
-                            <span>MongoDB</span>
-                            <span>React</span>
-                            <span>Stripe</span>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <span class="project-badge">SpurHacks 2025 - 3rd Place</span>
+                                <h3>Vroomi</h3>
+                            </div>
+                            <p>Campus-first ride-sharing platform connecting students for safe, split-cost transportation.</p>
+                            <div class="project-tech">
+                                <span>Flask</span>
+                                <span>MongoDB</span>
+                                <span>React</span>
+                                <span>Stripe</span>
+                            </div>
+                            <a href="https://devpost.com/software/vroomi" class="project-link magnetic-btn">
+                                View Project <i class='bx bx-arrow-right'></i>
+                            </a>
                         </div>
-                        <a href="https://devpost.com/software/vroomi" class="project-link magnetic-btn">
-                            View Project <i class='bx bx-arrow-right'></i>
-                        </a>
                     </div>
                 </div>
                 
+                <!-- Project 2 -->
                 <div class="project-card" data-reveal="up" data-delay="100">
-                    <div class="project-image">
-                        <img src="./images/studybuddy.jpg" alt="StudyBuddy">
-                        <div class="project-overlay"></div>
-                    </div>
-                    <div class="project-content">
-                        <h3>StudyBuddy Platform</h3>
-                        <p>Full-stack application with lecture summarization using Google Gemini LLM.</p>
-                        <div class="project-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>Gemini API</span>
+                    <div class="project-3d-wrapper">
+                        <div class="project-image">
+                            <img src="./images/Mimicoo.jpg" alt="StudyBuddy">
+                            <div class="project-overlay"></div>
                         </div>
-                        <a href="https://lnkd.in/gpRkpPMB" class="project-link">
-                            View Project <i class='bx bx-arrow-right'></i>
-                        </a>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <span class="project-badge">Hack The Valley X Winner</span>
+                                <h3>Mimicoo</h3>
+                            </div>
+                            <p>Infant babble analysis tool using MediaPipe and Librosa. Features Gemini API integration for speech disorder risk analysis.</p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>MediaPipe</span>
+                                <span>Flask</span>
+                            </div>
+                            <a href="https://devpost.com/software/mimicoo" class="project-link">
+                                View Project <i class='bx bx-arrow-right'></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
+                <!-- Project 3 -->
                 <div class="project-card" data-reveal="up" data-delay="200">
-                    <div class="project-image">
-                        <img src="./images/minutemaster.jpg" alt="MinuteMaster">
-                        <div class="project-overlay"></div>
-                    </div>
-                    <div class="project-content">
-                        <h3>MinuteMaster</h3>
-                        <p>Real-time speech-to-text converter for business meetings using AWS.</p>
-                        <div class="project-tech">
-                            <span>AWS</span>
-                            <span>Audio Processing</span>
-                            <span>LLM</span>
+                    <div class="project-3d-wrapper">
+                        <div class="project-image">
+                            <img src="./images/minutemaster.jpg" alt="MinuteMaster">
+                            <div class="project-overlay"></div>
                         </div>
-                        <a href="https://devpost.com/software/minutemaster" class="project-link">
-                            View Project <i class='bx bx-arrow-right'></i>
-                        </a>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <span class="project-badge">Hackathon Project</span>
+                                <h3>MinuteMaster</h3>
+                            </div>
+                            <p>Real-time speech-to-text converter for business meetings using AWS.</p>
+                            <div class="project-tech">
+                                <span>AWS</span>
+                                <span>Audio Processing</span>
+                                <span>LLM</span>
+                            </div>
+                            <a href="https://devpost.com/software/minutemaster" class="project-link">
+                                View Project <i class='bx bx-arrow-right'></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card" data-reveal="up" data-delay="300">
+                    <div class="project-3d-wrapper">
+                        <div class="project-image">
+                            <img src="./images/dws.jpg" alt="DWS (Digital Walking Stick)">
+                            <div class="project-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <span class="project-badge">CxC(Hackathon)</span>
+                                <h3>DWS(Digital Walking Stick)</h3>
+                            </div>
+                            <p>DWS is a voice-first indoor navigation assistant that combines real-time computer vision, AI-powered scene understanding, and intelligent pathfinding to guide visually impaired users through indoor environments using nothing but a smartphone camera</p>
+                            <div class="project-tech">
+                                <span>MiDaS depth estimation</span>
+                                <span>YOLOv8 object detection</span>
+                                <span>OpenCV</span>
+                                <span>MediaPipe</span>
+                                <span>Next.js</span>
+                            </div>
+                            <a href="https://devpost.com/software/dws-4z1rot" class="project-link" onclick="return false;">
+                                View Project <i></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card" data-reveal="up" data-delay="400">
+                    <div class="project-3d-wrapper">
+                        <div class="project-image">
+                            <img src="./images/Haptic.jpg" alt="HapticPhonix">
+                            <div class="project-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <span class="project-badge">Ctrl+Hack+Del(Project)</span>
+                                <h3>HapticPhonix</h3>
+                            </div>
+                            <p> A real-time speech learning system that combines:AI-powered lip reading Speech-to-haptic translation Phoneme-based vibration lessons
+                                 A student opens the mobile web app and sees their own face, lip landmarks, and phoneme feedback. As they speak, their phone vibrates in patterns that represent how their voice and mouth are moving. This allows students to feel their own speech in real time, creating immediate tactile feedback for learning proper phoneme formation.</p>
+                            <div class="project-tech">
+                                <span>TensorFlow</span>
+                                <span>PyTorch</span>
+                                <span>MediaPipe</span>
+                                <span>OpenCV</span>
+                                <span>Haptic Sensors</span>
+                            </div>
+                            <a href="https://devpost.com/software/hapticphonix" class="project-link" onclick="return false;">
+                                View Project <i ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -544,9 +633,9 @@
                     <div class="social-connect">
                         <h4>Connect With Me</h4>
                         <div class="social-row">
-                            <a href="#" class="social-btn magnetic-icon"><i class='bx bxl-github'></i></a>
-                            <a href="#" class="social-btn magnetic-icon"><i class='bx bxl-linkedin'></i></a>
-                            <a href="#" class="social-btn magnetic-icon"><i class='bx bxl-youtube'></i></a>
+                            <a href="https://github.com/farazkabbo" class="social-btn magnetic-icon"><i class='bx bxl-github'></i></a>
+                            <a href="https://www.linkedin.com/in/mohammed-faraz-kabbo/" class="social-btn magnetic-icon"><i class='bx bxl-linkedin'></i></a>
+                            <a href="https://www.youtube.com/channel/UCnhfV-TI5CosdvQPdabyP1A" class="social-btn magnetic-icon"><i class='bx bxl-youtube'></i></a>
                         </div>
                     </div>
                 </div>
