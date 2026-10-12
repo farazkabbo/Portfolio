@@ -1,0 +1,465 @@
+/* Game console (memory card browser), mini-games and the résumé sheet */
+
+.console {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    min-height: 100dvh;
+    padding: 76px 16px 72px;
+    background: radial-gradient(ellipse at 50% 30%, var(--night), #0b0714 75%);
+}
+
+/* ---------- memory card ---------- */
+.memcard {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 130px;
+    width: min(740px, 100%);
+    padding: 18px 20px;
+    border: 3px solid var(--mist);
+    outline: 3px solid var(--plum);
+    outline-offset: 3px;
+    background: rgba(18, 11, 28, 0.8);
+}
+
+.memcard__legend {
+    position: absolute;
+    top: -0.8em;
+    left: 14px;
+    padding: 0 8px;
+    background: #130c1f;
+    color: var(--mist);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.card__title {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--amber);
+}
+
+.memcard dl {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 4px 14px;
+    font-size: 0.9rem;
+}
+
+.memcard dt {
+    color: var(--mist);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.memcard dd {
+    min-height: 1.4em;
+}
+
+.memcard__main .row {
+    justify-content: flex-end;
+}
+
+.memcard__side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    margin-left: 18px;
+    padding-left: 18px;
+    border-left: 3px solid var(--grape);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.memcard__ok {
+    font-size: 1.6rem;
+    color: var(--sky);
+}
+
+.memcard__bar {
+    width: 100%;
+    height: 10px;
+    border: 2px solid var(--mist);
+    background: linear-gradient(to right, var(--sky) 72%, transparent 72%);
+}
+
+/* ---------- slots ---------- */
+.slots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px 30px;
+    width: min(740px, 100%);
+}
+
+.slot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 140px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--mist);
+}
+
+.slot__art {
+    display: grid;
+    place-items: center;
+    width: 92px;
+    height: 92px;
+    border: 3px solid var(--grape);
+    background: var(--night);
+}
+
+.slot__name {
+    padding: 0 8px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.slot__size {
+    font-size: 0.68rem;
+    line-height: 1.1;
+    opacity: 0.8;
+}
+
+.slot[tabindex='0'] .slot__art,
+.slot:hover .slot__art {
+    border-color: var(--sky);
+    background: var(--plum);
+}
+
+.slot[tabindex='0'] .slot__name {
+    border: 2px solid var(--sky);
+    background: var(--deep);
+    color: var(--paper);
+}
+
+.slot[tabindex='0']::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    border: 6px solid transparent;
+    border-top-color: var(--sky);
+}
+
+.slot:focus-visible {
+    outline: none;
+}
+
+.slot:focus-visible .slot__art {
+    outline: 3px solid var(--amber);
+    outline-offset: 2px;
+}
+
+.console__keys {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 8px;
+    border-top: 3px solid var(--grape);
+    background: #0b0714;
+    color: var(--mist);
+}
+
+.console__keys span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.console__keys kbd {
+    border-color: var(--sky);
+    color: var(--sky);
+}
+
+/* ---------- game overlay ---------- */
+.game {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    background: rgba(11, 7, 20, 0.94);
+    overflow: auto;
+}
+
+.game__frame {
+    width: min(600px, 100%);
+    border: 3px solid var(--mist);
+    background: var(--ink);
+    box-shadow: 8px 8px 0 var(--plum);
+}
+
+.game__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-bottom: 3px solid var(--mist);
+}
+
+.game__head h2 {
+    font-size: 1.1rem;
+    color: var(--amber);
+}
+
+.game__status {
+    flex: 1;
+    text-align: right;
+    color: var(--sky);
+}
+
+.game__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+}
+
+.game__msg {
+    min-height: 1.4em;
+    text-align: center;
+    color: var(--mist);
+}
+
+.game__canvas {
+    width: min(100%, 540px);
+    height: auto;
+    border: 3px solid var(--grape);
+    touch-action: none;
+}
+
+.game__canvas:focus-visible {
+    outline: none;
+    border-color: var(--sky);
+}
+
+.game__pad {
+    display: none;
+    grid-template: repeat(2, 44px) / repeat(3, 56px);
+    gap: 4px;
+}
+
+.game__pad .pad--up { grid-area: 1 / 2; }
+.game__pad .pad--left { grid-area: 2 / 1; }
+.game__pad .pad--down { grid-area: 2 / 2; }
+.game__pad .pad--right { grid-area: 2 / 3; }
+
+@media (pointer: coarse) {
+    .game__pad {
+        display: grid;
+    }
+
+    .console__keys {
+        display: none;
+    }
+
+    .console {
+        padding-bottom: 24px;
+    }
+}
+
+.memory {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(60px, 96px));
+    gap: 8px;
+}
+
+.memory__card {
+    aspect-ratio: 1;
+    padding: 0;
+    border: 3px solid var(--lilac);
+    background: var(--grape);
+    color: var(--paper);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.memory__card.is-up {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.memory__card.is-done {
+    border-color: var(--mint);
+    background: var(--mint);
+}
+
+.bugs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(72px, 104px));
+    gap: 10px;
+}
+
+.bugs__hole {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 3px solid var(--grape);
+    background: radial-gradient(circle, #0b0714 45%, var(--plum) 46%);
+    color: var(--lilac);
+}
+
+.bugs__hole kbd {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    font-size: 0.65rem;
+}
+
+.bugs__hole.has-bug {
+    border-color: var(--coral);
+}
+
+/* ---------- résumé ---------- */
+.cv {
+    min-height: 100dvh;
+    padding: 76px 12px 48px;
+}
+
+.cv__sheet {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: clamp(16px, 4vw, 36px);
+    border: 3px solid var(--ink);
+    outline: 3px solid var(--lilac);
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 10px 10px 0 var(--plum);
+}
+
+.cv__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 18px;
+    border-bottom: 3px solid var(--ink);
+}
+
+.cv__head > div:last-child {
+    flex: 1;
+    min-width: 240px;
+}
+
+.cv__face {
+    flex: none;
+    border: 3px solid var(--ink);
+    background: var(--sky);
+}
+
+.cv__head h1 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    line-height: 1.05;
+}
+
+.cv__tagline {
+    color: var(--grape);
+}
+
+.cv__contact {
+    font-size: 0.9rem;
+}
+
+.cv__section {
+    margin-top: 22px;
+}
+
+.cv__section > h2 {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.cv__section p + p,
+.cv__item + .cv__item,
+.cv__skill + .cv__skill {
+    margin-top: 10px;
+}
+
+.cv__section ul:not(.tags) {
+    padding-left: 1.2em;
+}
+
+.cv__item {
+    padding-left: 12px;
+    border-left: 3px solid var(--sky);
+}
+
+.cv__item h3,
+.cv__skill h3 {
+    font-size: 1.05rem;
+}
+
+.cv__item h3 span {
+    font-weight: 400;
+    color: var(--grape);
+}
+
+.cv__date {
+    font-size: 0.8rem;
+    color: var(--grape);
+}
+
+@media (max-width: 560px) {
+    .memcard {
+        grid-template-columns: 1fr;
+    }
+
+    .memcard__side {
+        display: none;
+    }
+
+    .slots {
+        gap: 26px 8px;
+    }
+
+    .slot {
+        width: 46%;
+    }
+}
+
+@media print {
+    .hud,
+    .crt,
+    .cv__actions {
+        display: none !important;
+    }
+
+    body,
+    .cv {
+        padding: 0;
+        background: #fff;
+    }
+
+    .cv__sheet {
+        max-width: none;
+        border: 0;
+        outline: 0;
+        box-shadow: none;
+        background: #fff;
+    }
+}

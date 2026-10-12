@@ -1,0 +1,197 @@
+/* The room scene, the dialog box and the touch controls */
+
+.room {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 100dvh;
+    padding: 64px 12px 12px;
+}
+
+.room__stage {
+    position: relative;
+    border: 4px solid var(--night);
+    box-shadow: 0 0 0 4px var(--plum), 0 0 60px rgba(134, 176, 234, 0.12);
+    line-height: 0;
+}
+
+.room__canvas {
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.room__canvas:focus-visible {
+    outline: 2px dashed var(--grape);
+    outline-offset: 10px;
+}
+
+.room__hint {
+    min-height: 1.4em;
+    font-size: 0.85rem;
+    color: var(--mist);
+    text-align: center;
+}
+
+.room__menu {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    z-index: 70;
+    display: grid;
+    min-width: 220px;
+    border: 3px solid var(--ink);
+    background: var(--paper);
+    box-shadow: var(--shadow);
+    transform: translateX(-50%);
+}
+
+.room__menuitem {
+    padding: 6px 14px;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    text-align: left;
+}
+
+.room__menuitem:hover,
+.room__menuitem:focus-visible {
+    outline: none;
+    background: var(--sky);
+}
+
+/* ---------- dialog ---------- */
+.dialog {
+    position: fixed;
+    left: 50%;
+    bottom: 14px;
+    z-index: 60;
+    display: flex;
+    align-items: flex-end;
+    width: min(760px, calc(100vw - 20px));
+    transform: translateX(-50%);
+    animation: dialog-in 0.2s steps(4);
+}
+
+@keyframes dialog-in {
+    from { transform: translate(-50%, 24px); opacity: 0; }
+}
+
+.dialog__portrait {
+    position: relative;
+    flex: none;
+    margin-right: -14px;
+}
+
+.dialog__portrait::before {
+    content: '';
+    position: absolute;
+    inset: 12% 0 0 -8%;
+    background: var(--sky);
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.dialog__portrait canvas {
+    position: relative;
+    width: clamp(88px, 24vw, 200px) !important;
+    height: auto !important;
+}
+
+.dialog__box {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    padding: 20px 16px 12px;
+    border: 3px solid var(--lilac);
+    background: var(--ink);
+    box-shadow: var(--shadow);
+}
+
+.dialog__name {
+    position: absolute;
+    top: -1.25em;
+    left: -3px;
+    padding: 0 14px;
+    border: 3px solid var(--ink);
+    background: var(--sky);
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.dialog__text {
+    min-height: 4.2em;
+    font-size: 1.02rem;
+}
+
+.dialog__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* ---------- touch controls ---------- */
+.dpad {
+    display: none;
+}
+
+@media (pointer: coarse) {
+    .dpad {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: min(440px, 100%);
+        padding: 0 12px;
+    }
+
+    .room__hint {
+        display: none;
+    }
+}
+
+.dpad__cross {
+    display: grid;
+    grid-template: repeat(3, 44px) / repeat(3, 44px);
+}
+
+.dpad__btn {
+    position: relative;
+    border: 3px solid var(--ink);
+    background: var(--mist);
+    touch-action: none;
+}
+
+.dpad__btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+}
+
+.dpad__btn--up { grid-area: 1 / 2; }
+.dpad__btn--left { grid-area: 2 / 1; }
+.dpad__btn--right { grid-area: 2 / 3; }
+.dpad__btn--down { grid-area: 3 / 2; }
+.dpad__btn--up::before { border-bottom-color: var(--ink); top: -8px; }
+.dpad__btn--down::before { border-top-color: var(--ink); bottom: -8px; }
+.dpad__btn--left::before { border-right-color: var(--ink); left: -8px; }
+.dpad__btn--right::before { border-left-color: var(--ink); right: -8px; }
+
+.dpad__btn:active {
+    background: var(--sky);
+}
+
+.dpad__act {
+    width: 72px;
+    height: 72px;
+    border: 3px solid var(--ink);
+    background: var(--coral);
+    color: var(--ink);
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: inset -4px -4px 0 rgba(18, 11, 28, 0.25);
+}

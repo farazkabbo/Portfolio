@@ -1,0 +1,330 @@
+/* Achievements (toasts + panel), the art diary and the cat world */
+
+/* ---------- toasts ---------- */
+.toasts {
+    position: fixed;
+    top: 64px;
+    right: 12px;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 230px;
+    max-width: min(320px, calc(100vw - 24px));
+    padding: 8px 12px;
+    border: 3px solid var(--ink);
+    background: var(--amber);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    animation: toast-in 0.25s steps(5);
+}
+
+.toast--item {
+    background: var(--mint);
+}
+
+.toast div {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.toast span {
+    font-size: 0.85rem;
+}
+
+.toast.is-leaving {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.4s steps(4), transform 0.4s steps(4);
+}
+
+@keyframes toast-in {
+    from { transform: translateX(40px); opacity: 0; }
+}
+
+/* ---------- achievements panel ---------- */
+.trophies,
+.diary-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    background: rgba(11, 7, 20, 0.86);
+    overflow: auto;
+}
+
+.trophies__sheet {
+    width: min(520px, 100%);
+    max-height: calc(100dvh - 24px);
+    overflow: auto;
+    padding: 16px;
+    border: 3px solid var(--mist);
+    background: var(--ink);
+    box-shadow: 8px 8px 0 var(--plum);
+}
+
+.trophies__sheet header,
+.diary-overlay header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.trophies__sheet h2,
+.diary-overlay h2 {
+    font-size: 1.3rem;
+    color: var(--amber);
+}
+
+.trophies__sheet h3 {
+    margin: 14px 0 8px;
+    color: var(--sky);
+}
+
+.trophies__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 6px;
+    list-style: none;
+}
+
+.trophies__list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border: 2px solid var(--plum);
+    color: var(--lilac);
+    line-height: 1.1;
+}
+
+.trophies__list li div {
+    display: flex;
+    flex-direction: column;
+}
+
+.trophies__list span {
+    font-size: 0.8rem;
+}
+
+.trophies__list li.is-got {
+    border-color: var(--amber);
+    background: var(--night);
+    color: var(--paper);
+}
+
+.trophies__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+}
+
+.trophies__items li {
+    padding: 0 10px;
+    border: 2px dashed var(--grape);
+    color: var(--lilac);
+}
+
+.trophies__items li.is-got {
+    border: 2px solid var(--mint);
+    color: var(--mint);
+}
+
+.trophies__reset {
+    margin-top: 14px;
+    color: var(--lilac);
+    font-size: 0.8rem;
+}
+
+/* ---------- art diary ---------- */
+.diary-overlay__inner {
+    width: min(560px, 100%);
+}
+
+.diary {
+    position: relative;
+    padding: 14px 14px 12px 30px;
+    border: 3px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 8px 8px 0 var(--plum);
+}
+
+.diary:focus-visible {
+    outline-offset: 4px;
+}
+
+/* spiral binding */
+.diary__spine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    width: 14px;
+    background: radial-gradient(circle at 7px 9px, var(--ink) 3px, transparent 3.5px) 0 4px / 14px 18px repeat-y;
+}
+
+.diary__page {
+    margin: 0;
+}
+
+.diary__img {
+    width: 100%;
+    max-height: min(54dvh, 480px);
+    border: 3px solid var(--ink);
+    background: var(--night);
+    object-fit: contain;
+}
+
+.diary.is-turning .diary__page {
+    animation: page-turn 0.28s steps(5);
+}
+
+@keyframes page-turn {
+    from { opacity: 0; transform: translateX(14px) rotate(1deg); }
+}
+
+.diary__title {
+    margin-top: 8px;
+    font-size: 1.25rem;
+}
+
+.diary__note {
+    color: var(--grape);
+}
+
+.diary__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.diary__count {
+    font-size: 0.85rem;
+    color: var(--grape);
+}
+
+.diary__more {
+    margin-top: 8px;
+    font-size: 0.82rem;
+    text-align: center;
+}
+
+.win__body--art {
+    padding: 8px;
+    background: var(--mist);
+}
+
+.win__body--art .diary {
+    box-shadow: none;
+}
+
+.win__body--art .diary__img {
+    max-height: 300px;
+}
+
+/* ---------- cat world ---------- */
+.catworld {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 100dvh;
+    padding: 64px 12px 16px;
+    background: radial-gradient(ellipse at 50% 20%, #32266f, var(--ink) 75%);
+}
+
+.catworld__title {
+    font-family: var(--font-logo);
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    color: var(--amber);
+    text-shadow: 3px 3px 0 var(--grape);
+}
+
+.catworld__stage {
+    position: relative;
+    border: 4px solid var(--night);
+    box-shadow: 0 0 0 4px var(--grape), 0 0 60px rgba(242, 198, 109, 0.15);
+    line-height: 0;
+}
+
+.catworld__cat {
+    position: absolute;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.catworld__cat:hover,
+.catworld__cat:focus-visible {
+    outline: 3px dashed var(--amber);
+    outline-offset: 0;
+}
+
+.catworld__status {
+    min-height: 1.4em;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.catworld__actions {
+    justify-content: center;
+    margin-top: 0;
+}
+
+.catworld__hint {
+    font-size: 0.8rem;
+    color: var(--mist);
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .hud {
+        gap: 4px;
+    }
+
+    .hud__btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .toasts {
+        left: 12px;
+        align-items: flex-end;
+    }
+}
+
+/* ---------- visitor counter ---------- */
+.visitors:empty {
+    display: none;
+}
+
+.title__credit .visitors:not(:empty)::before {
+    content: '  ·  ';
+    white-space: pre;
+}
+
+/* ---------- rooftop (shares the cat world layout) ---------- */
+.rooftop {
+    background: radial-gradient(ellipse at 50% 15%, #1e1850, var(--ink) 75%);
+}
+
+.rooftop .catworld__title {
+    color: var(--sky);
+}

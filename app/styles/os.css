@@ -1,0 +1,697 @@
+/* FarazOS: desktop, windows, taskbar, start menu and the apps */
+
+.os {
+    position: relative;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    height: 100dvh;
+    overflow: hidden;
+    color: var(--ink);
+}
+
+.os__desktop {
+    position: relative;
+    overflow: hidden;
+    background: #5d6aa8 radial-gradient(#6c7ab8 1px, transparent 1.5px) 0 0 / 9px 9px;
+}
+
+.os__icons {
+    position: absolute;
+    inset: 10px auto 10px 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 4px 6px;
+    list-style: none;
+}
+
+.deskicon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 92px;
+    padding: 6px 2px;
+    border: 2px solid transparent;
+    background: none;
+    color: var(--paper);
+    font-size: 0.82rem;
+    line-height: 1.15;
+    text-shadow: 1px 1px 0 var(--ink), 2px 2px 0 var(--ink);
+}
+
+.deskicon canvas {
+    filter: drop-shadow(2px 2px 0 rgba(18, 11, 28, 0.45));
+}
+
+.deskicon:hover,
+.deskicon:focus-visible {
+    outline: none;
+    border: 2px dotted var(--paper);
+    background: rgba(18, 11, 28, 0.25);
+}
+
+.os__windows {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* ---------- window ---------- */
+.win {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid var(--ink);
+    background: var(--paper);
+    box-shadow: 6px 6px 0 rgba(18, 11, 28, 0.35);
+    pointer-events: auto;
+    animation: win-in 0.15s steps(3);
+}
+
+@keyframes win-in {
+    from { transform: scale(0.92); opacity: 0; }
+}
+
+.win:focus {
+    outline: none;
+}
+
+.win.is-max {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    box-shadow: none;
+}
+
+.win__bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: none;
+    min-height: 36px;
+    padding: 3px 4px 3px 8px;
+    border-bottom: 3px solid var(--ink);
+    background: var(--mist);
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+}
+
+.win.is-active .win__bar {
+    background: var(--sky);
+}
+
+.win__title {
+    flex: 1;
+    overflow: hidden;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.win__ctls {
+    display: flex;
+    gap: 4px;
+}
+
+.win__ctl {
+    position: relative;
+    width: 28px;
+    height: 26px;
+    padding: 0;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    box-shadow: inset -2px -2px 0 var(--mist);
+}
+
+.win__ctl::before,
+.win__ctl::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    background: var(--ink);
+}
+
+.win__ctl--min::before { width: 12px; height: 3px; top: 10px; }
+.win__ctl--min::after { display: none; }
+.win__ctl--max::before { width: 12px; height: 12px; background: none; border: 2px solid var(--ink); border-top-width: 4px; }
+.win__ctl--max::after { display: none; }
+.win__ctl--close::before { width: 14px; height: 3px; transform: rotate(45deg); }
+.win__ctl--close::after { width: 14px; height: 3px; transform: rotate(-45deg); }
+
+.win__ctl:hover {
+    background: var(--amber);
+}
+
+.win__ctl--close:hover {
+    background: var(--coral);
+}
+
+.win__body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 12px;
+    font-size: 0.92rem;
+}
+
+.win__grip {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, transparent 50%, var(--ink) 50% 60%, transparent 60% 70%, var(--ink) 70% 80%, transparent 80%);
+    cursor: nwse-resize;
+    touch-action: none;
+}
+
+.win.is-max .win__grip {
+    display: none;
+}
+
+/* ---------- shared page content ---------- */
+.page > * + * {
+    margin-top: 10px;
+}
+
+.page h3 {
+    font-size: 1.15rem;
+}
+
+.page ul:not(.tags, .certs, .folder__grid) {
+    padding-left: 1.2em;
+}
+
+.page__kicker {
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.page__name {
+    margin-top: 0 !important;
+    text-align: center;
+    font-size: 1.45rem !important;
+    font-weight: 700;
+}
+
+.page__role {
+    margin-top: 0 !important;
+    text-align: center;
+    color: var(--grape);
+}
+
+.card {
+    padding: 10px 12px;
+    border: 2px solid var(--mist);
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.card > * + * {
+    margin-top: 6px;
+}
+
+.card h4 {
+    font-size: 1rem;
+}
+
+.card__date {
+    font-size: 0.8rem;
+    color: var(--grape);
+}
+
+.card__org {
+    margin-top: 0 !important;
+    color: var(--grape);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0 8px;
+    border: 2px solid var(--ink);
+    background: var(--amber);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.fine {
+    font-size: 0.78rem;
+    color: var(--grape);
+}
+
+/* ---------- browser ---------- */
+.win__body--browser {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+
+.browser__bar {
+    display: flex;
+    gap: 8px;
+    padding: 4px 10px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--mist);
+    font-size: 0.82rem;
+}
+
+.browser__url {
+    flex: 1;
+    padding: 0 6px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+}
+
+.browser__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 14px;
+    padding: 8px 10px;
+    border-bottom: 2px dashed var(--mist);
+}
+
+.linkbtn {
+    padding: 2px 2px;
+    border: 0;
+    background: none;
+    color: #33509a;
+    text-decoration: underline;
+}
+
+.linkbtn[aria-current] {
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.browser__view {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 12px;
+}
+
+.browser__view:focus-visible {
+    outline-offset: -3px;
+}
+
+/* ---------- folders ---------- */
+.folder__path {
+    margin: -12px -12px 10px;
+    padding: 4px 12px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--mist);
+    font-size: 0.8rem;
+}
+
+.folder__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+    gap: 8px;
+    list-style: none;
+}
+
+.file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    padding: 6px 4px;
+    border: 2px solid transparent;
+    background: none;
+    color: var(--ink);
+    font-size: 0.82rem;
+    line-height: 1.15;
+}
+
+.file img {
+    width: 84px;
+    height: 60px;
+    border: 2px solid var(--ink);
+    object-fit: cover;
+    image-rendering: pixelated;
+}
+
+.file:hover,
+.file:focus-visible {
+    outline: none;
+    border: 2px dotted var(--ink);
+    background: var(--sky);
+}
+
+.project__img {
+    width: 100%;
+    max-height: 180px;
+    border: 2px solid var(--ink);
+    object-fit: cover;
+}
+
+.certs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+    list-style: none;
+}
+
+.certs li {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.82rem;
+}
+
+.certs img {
+    width: 100%;
+    height: 72px;
+    margin-bottom: 4px;
+    border: 2px solid var(--ink);
+    background: #fff;
+    object-fit: contain;
+}
+
+.trash {
+    list-style: none;
+}
+
+.trash li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 2px dashed var(--mist);
+}
+
+.trash span {
+    color: var(--grape);
+    font-size: 0.8rem;
+}
+
+/* ---------- terminal ---------- */
+.win__body--terminal {
+    display: flex;
+    flex-direction: column;
+    background: var(--ink);
+    color: var(--mint);
+    cursor: text;
+}
+
+.term__out {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+}
+
+.term__out pre {
+    margin: 0;
+    font: inherit;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.term__prompt,
+.term__line span {
+    color: var(--sky);
+}
+
+.term__line {
+    display: flex;
+    gap: 8px;
+    margin: 4px 0 0;
+}
+
+.term__input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--paper);
+    caret-color: var(--amber);
+}
+
+.term__input:focus {
+    outline: none;
+}
+
+/* ---------- paint ---------- */
+.win__body--paint {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--mist);
+}
+
+.paint__tools,
+.paint__colors,
+.paint__sizes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.paint__tools {
+    gap: 8px 12px;
+}
+
+.paint__swatch {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 2px solid var(--ink);
+}
+
+.paint__swatch[aria-checked='true'] {
+    outline: 3px solid var(--paper);
+    outline-offset: -5px;
+    box-shadow: 0 0 0 2px var(--ink);
+}
+
+.paint__stage {
+    flex: none;
+}
+
+.paint__canvas {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 160 / 100;
+    border: 3px solid var(--ink);
+    background: var(--paper);
+    cursor: crosshair;
+    touch-action: none;
+}
+
+/* ---------- taskbar ---------- */
+.taskbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 48px;
+    padding: 4px 6px;
+    border-top: 3px solid var(--ink);
+    background: var(--mist);
+}
+
+.taskbar__start,
+.task {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 2px 10px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 0.85rem;
+    box-shadow: inset -2px -2px 0 var(--lilac);
+}
+
+.taskbar__start {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.taskbar__tasks {
+    display: flex;
+    flex: 1;
+    gap: 4px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.task {
+    flex: 0 1 150px;
+    min-width: 40px;
+}
+
+.task span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task.is-active,
+.taskbar__start[aria-expanded='true'] {
+    background: var(--sky);
+    box-shadow: inset 2px 2px 0 var(--deep);
+}
+
+.taskbar__tray {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.taskbar__tray .hud__btn {
+    width: 36px;
+    height: 36px;
+    border-width: 2px;
+}
+
+.taskbar__clock {
+    padding: 0 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.startmenu {
+    position: absolute;
+    left: 6px;
+    bottom: 52px;
+    z-index: 900;
+    display: grid;
+    width: 230px;
+    border: 3px solid var(--ink);
+    background: var(--paper);
+    box-shadow: var(--shadow);
+}
+
+.startmenu__head {
+    padding: 6px 12px;
+    background: var(--deep);
+    color: var(--paper);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.startmenu__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font-size: 0.9rem;
+    text-align: left;
+    text-decoration: none;
+}
+
+.startmenu__item:hover,
+.startmenu__item:focus-visible {
+    outline: none;
+    background: var(--sky);
+}
+
+.startmenu__item--off {
+    border-top: 2px solid var(--ink);
+}
+
+/* ---------- assistant ---------- */
+.assistant {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    z-index: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+    animation: win-in 0.2s steps(3);
+}
+
+.assistant__bubble {
+    position: relative;
+    width: min(250px, 70vw);
+    padding: 10px 12px;
+    border: 3px solid var(--ink);
+    background: #f4dca6;
+    font-size: 0.85rem;
+    box-shadow: var(--shadow);
+    pointer-events: auto;
+}
+
+.assistant__bubble::after {
+    content: '';
+    position: absolute;
+    right: 28px;
+    bottom: -13px;
+    border: 6px solid transparent;
+    border-top-color: var(--ink);
+}
+
+/* ---------- boot ---------- */
+.os__boot {
+    position: absolute;
+    inset: 0;
+    z-index: 950;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.os__bootlogo {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--sky);
+}
+
+.os__bootbar {
+    width: 200px;
+    height: 16px;
+    padding: 2px;
+    border: 3px solid var(--paper);
+}
+
+.os__bootbar span {
+    display: block;
+    height: 100%;
+    background: var(--sky);
+    animation: boot 1s steps(8) forwards;
+}
+
+@keyframes boot {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@media (max-width: 640px) {
+    .deskicon {
+        width: 78px;
+    }
+
+    .task span,
+    .taskbar__clock {
+        display: none;
+    }
+
+    .task {
+        flex: 0 0 40px;
+        justify-content: center;
+        padding: 2px;
+    }
+}
