@@ -6,6 +6,7 @@ import { playerIcon } from '../art/sprites.js';
 import { fxButton, soundButton, musicButton, trophyButton } from '../core/hud.js';
 import { roomBackdrop } from './title.js';
 import { showVisitorCount } from '../core/visitors.js';
+import { profile } from '../content.js';
 
 const JOURNEYS = [
     { id: 'room', label: 'Full Experience', hint: 'Walk around my room', art: () => playerIcon(3) },
@@ -38,7 +39,7 @@ export function select(root, { go }) {
                 'Prefer plain scrolling? ',
                 h('a', { href: './classic.html' }, 'Open the classic site'),
             ),
-            h('p', { class: 'select__alt visitors' }),
+            h('p', { class: 'select__alt' }, profile.copyright, h('span', { class: 'visitors' })),
         ),
     ));
 

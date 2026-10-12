@@ -4,6 +4,8 @@ import { h, roving } from '../core/dom.js';
 import { sfx } from '../core/audio.js';
 import { hud } from '../core/hud.js';
 import { award } from '../core/progress.js';
+import { setMusic } from '../core/music.js';
+import { playBootIntro } from './bootintro.js';
 import { makeCanvas, painter } from '../art/paint.js';
 import { icon } from '../art/icons.js';
 import { snake } from '../games/snake.js';
@@ -111,14 +113,15 @@ export function games(root, { go }) {
         list.querySelector('[tabindex="0"]')?.focus();
     }
 
-    root.append(h('main', { class: 'console', id: 'main' },
+    const main = h('main', { class: 'console', id: 'main' },
         hud(go),
         card,
         list,
         h('footer', { class: 'console__keys', 'aria-hidden': 'true' },
             h('span', null, h('kbd', null, '↵'), 'Enter'), h('span', null, h('kbd', null, 'Esc'), 'Back'), h('span', null, h('kbd', null, '←→'), 'Select')),
         overlay,
-    ));
+    );
+    root.append(main);
 
     const nav = roving(list, '.slot', { cols: perRow, onMove: (i) => { describe(SLOTS[i]); sfx.move(); } });
     list.addEventListener('mouseover', (e) => {
@@ -127,6 +130,7 @@ export function games(root, { go }) {
     });
     describe(SLOTS[0]);
     nav.select(0);
+    const stopIntro = playBootIntro(main, () => { setMusic('arcade'); nav.select(0); });
 
     const onKey = (e) => {
         if (e.key !== 'Escape' || document.querySelector('.trophies')) return;
@@ -134,5 +138,5 @@ export function games(root, { go }) {
         else go('select');
     };
     window.addEventListener('keydown', onKey);
-    return () => { stopGame?.(); window.removeEventListener('keydown', onKey); };
+    return () => { stopIntro(); stopGame?.(); window.removeEventListener('keydown', onKey); };
 }

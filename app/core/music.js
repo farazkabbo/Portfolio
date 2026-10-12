@@ -161,6 +161,8 @@ export function setMusic(name) {
     sync();
 }
 
+export const nowPlaying = () => playing;
+
 export function setRain(on) {
     rainWanted = on;
     sync();

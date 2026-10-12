@@ -41,6 +41,7 @@ export function resume(root, { go }) {
                 h('ul', null, certificates.map((c) => h('li', null, `${c.title} — ${c.org}`)))),
             section('Achievements', h('ul', null, achievements.map((a) => h('li', null, h('strong', null, a.title), ` — ${a.detail}`)))),
             section('Skills', skills.map((s) => h('div', { class: 'cv__skill' }, h('h3', null, s.group), tags(s.items)))),
+            h('footer', { class: 'cv__foot' }, profile.copyright),
         ),
     ));
 

@@ -38,7 +38,7 @@ export function title(root, { go }) {
                 link('github', 'GitHub', social('github').url),
             ),
         ),
-        h('p', { class: 'title__credit' }, `Developed by ${profile.name}`, h('span', { class: 'visitors' })),
+        h('p', { class: 'title__credit' }, `Developed by ${profile.name}`, h('br'), profile.copyright, h('span', { class: 'visitors' })),
     );
     root.append(screen);
     showVisitorCount(screen.querySelector('.visitors'));

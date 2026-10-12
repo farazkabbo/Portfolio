@@ -250,8 +250,8 @@
 }
 
 .catworld__title {
-    font-family: var(--font-logo);
-    font-size: clamp(1.4rem, 5vw, 2rem);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 5.5vw, 2.3rem);
     color: var(--amber);
     text-shadow: 3px 3px 0 var(--grape);
 }
@@ -315,7 +315,8 @@
     display: none;
 }
 
-.title__credit .visitors:not(:empty)::before {
+.title__credit .visitors:not(:empty)::before,
+.select__alt .visitors:not(:empty)::before {
     content: '  ·  ';
     white-space: pre;
 }
@@ -327,4 +328,79 @@
 
 .rooftop .catworld__title {
     color: var(--sky);
+}
+
+.cv__foot {
+    margin-top: 26px;
+    padding-top: 10px;
+    border-top: 3px solid var(--ink);
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--grape);
+}
+
+/* ---------- console start-up animation ---------- */
+.boot {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: radial-gradient(ellipse at 50% 45%, #3b2a7a, #1a1140 60%, #0b0714);
+    cursor: pointer;
+}
+
+.boot.is-leaving {
+    opacity: 0;
+    transition: opacity 0.3s steps(4);
+    pointer-events: none;
+}
+
+.boot__screen {
+    width: min(72vw, 384px);
+    height: auto;
+    filter: drop-shadow(0 10px 0 rgba(11, 7, 20, 0.45));
+}
+
+.boot__name {
+    display: flex;
+    font-weight: 700;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    letter-spacing: 0.08em;
+    color: var(--paper);
+    text-shadow: 3px 3px 0 var(--grape);
+}
+
+.boot__name span,
+.boot__copy {
+    opacity: 0;
+}
+
+.boot.is-built .boot__name span {
+    animation: boot-letter 0.22s steps(3) forwards;
+}
+
+.boot.is-built .boot__copy {
+    animation: boot-letter 0.3s steps(3) 0.6s forwards;
+}
+
+@keyframes boot-letter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+}
+
+.boot__copy {
+    font-size: 0.9rem;
+    color: var(--mist);
+}
+
+.boot__skip {
+    position: absolute;
+    bottom: 18px;
+    font-size: 0.75rem;
+    color: var(--lilac);
+    opacity: 0.7;
 }

@@ -65,6 +65,8 @@ export const sfx = {
     coin: () => { tone(988, 0.06); tone(1319, 0.18, { delay: 0.06 }); },
     hit: () => tone(200, 0.08, { type: 'sawtooth', slide: -120 }),
     win: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, 0.14, { delay: i * 0.1 })),
+    marimba: (freq) => { tone(freq, 0.24, { type: 'sine', vol: 0.14 }); tone(freq * 2, 0.07, { type: 'triangle', vol: 0.05 }); },
+    chord: () => [262, 392, 523, 659, 784].forEach((f, i) => tone(f, 0.9, { type: 'triangle', vol: 0.07, delay: i * 0.03 })),
     rumble: () => [70, 55, 62, 48, 58].forEach((f, i) => tone(f, 0.16, { type: 'sawtooth', vol: 0.09, delay: i * 0.12 })),
     boot: () => [262, 330, 392, 523].forEach((f, i) => tone(f, 0.22, { type: 'triangle', vol: 0.06, delay: i * 0.12 })),
 };

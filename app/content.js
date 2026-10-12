@@ -10,6 +10,7 @@ export const profile = {
     title: 'AI Engineer & Software Developer',
     tagline: 'AI engineer · co-founder of Clarus · CS at York University',
     location: 'Toronto, Ontario, Canada',
+    copyright: '© 2026 farazkabbo',
     email: 'kabbofaraz@gmail.com',
     resumePdf: './images/Mohammed_Faraz_Kabbo_Resume.pdf',
     photo: './images/faraz.jpg',

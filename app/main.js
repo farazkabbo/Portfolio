@@ -12,7 +12,8 @@ import { catworld } from './scenes/catworld.js';
 import { rooftop } from './scenes/rooftop.js';
 
 const scenes = { title, select, room, os, games, resume, catworld, rooftop };
-const MUSIC = { games: 'arcade', catworld: 'cat', rooftop: 'cat' }; // everything else gets the cosy loop
+// Everything not listed gets the cosy loop. The console is silent here: it starts its own music after the boot intro.
+const MUSIC = { games: null, catworld: 'cat', rooftop: 'cat' };
 const app = document.getElementById('app');
 let unmount = null;
 
@@ -28,7 +29,7 @@ function render() {
     unmount?.();
     app.replaceChildren();
     app.dataset.scene = scene;
-    setMusic(MUSIC[scene] || 'cozy');
+    setMusic(scene in MUSIC ? MUSIC[scene] : 'cozy');
     unmount = scenes[scene](app, { go }) || null;
     window.scrollTo(0, 0);
 }
