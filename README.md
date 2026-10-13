@@ -54,7 +54,3 @@ app/
 
 
 
-## Credits
-
-Concept inspired by [MewmewDevArt's PortfolioWeb XP](https://github.com/mewmewdevart/DevCommunityPortfolioChallenge2026).
-The code and pixel art in this repo are original, not copied from that project.
