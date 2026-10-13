@@ -52,8 +52,7 @@ app/
   styles/           CSS
 ```
 
-All pixel art is drawn in code from rectangles (no sprite images), and all sound effects and the
-background music are synthesised with WebAudio (no audio files).
+
 
 ## Credits
 
